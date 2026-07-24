@@ -4,6 +4,13 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Isaac Jung - Portfolio</title>
+<meta content="Isaac Jung — Statistics & Machine Learning student at Carnegie Mellon, working across AI safety, research, and data analysis to turn complex data into clear, honest insight." name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="Isaac Jung — Portfolio" property="og:title"/>
+<meta content="Isaac Jung — Statistics & Machine Learning student at Carnegie Mellon, working across AI safety, research, and data analysis to turn complex data into clear, honest insight." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://iwjung55.github.io/isaac-jung-portfolio/index.html" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -111,8 +118,20 @@
         }
         body { background-color: #F8F6F2; } /* Warm ivory paper base */
     </style>
+<style id="ux-enhance">
+        a, button { outline-offset: 3px; }
+        a:focus-visible, button:focus-visible { outline: 2px solid #526255; }
+        .skip-link { position: absolute; left: -999px; top: 0; z-index: 100; background:#0b0c0c; color:#fff; padding:10px 16px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; }
+        .skip-link:focus { left: 8px; top: 8px; }
+        #toTop { transition: opacity .3s ease, transform .3s ease; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+            .fade-up, .fade-in-section { opacity: 1 !important; transform: none !important; }
+        }
+</style>
 </head>
 <body class="text-primary font-body-md min-h-screen relative overflow-x-hidden antialiased">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="paper-grain"></div>
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant">
@@ -121,7 +140,7 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 hover:opacity-70 border-b border-transparent" href="about.html">About</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 hover:opacity-70 border-b border-transparent" href="projects.html">Projects</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 hover:opacity-70 border-b border-transparent" href="experience.html">Experience</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 hover:opacity-70 border-b border-transparent" href="mailto:isaacjung0702@gmail.com">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 hover:opacity-70 border-b border-transparent" href="index.html#contact">Contact</a>
 </nav>
 <a class="hidden md:block px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-secondary transition-colors duration-300" href="mailto:isaacjung0702@gmail.com">Connect</a>
 <!-- Mobile Menu Icon -->
@@ -133,12 +152,12 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="projects.html">Projects</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="experience.html">Experience</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="mailto:isaacjung0702@gmail.com">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#contact">Contact</a>
 <a class="mt-2 inline-block px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest text-center" href="mailto:isaacjung0702@gmail.com">Connect</a>
 </div>
 </header>
 <!-- Main Content -->
-<main class="pt-32 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 max-w-container-max mx-auto">
+<main id="main" class="pt-32 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 max-w-container-max mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <!-- Intro Section (Left/Top) -->
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
@@ -191,6 +210,30 @@
 <div class="col-span-1"></div>
 </div>
 </main>
+<!-- Contact Section -->
+<section class="border-t border-outline-variant bg-background scroll-mt-24" id="contact">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">01 / CONTACT</span>
+<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Let's talk.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-xs leading-relaxed">Open to research, data, and internship opportunities — and always happy to talk statistics, markets, or policy.</p>
+</div>
+<div class="md:col-span-7 md:col-start-6 flex flex-col justify-center gap-8 mt-12 md:mt-0">
+<a class="group flex items-baseline justify-between gap-4 border-b border-outline-variant pb-4 hover:border-primary transition-colors" href="mailto:isaacjung0702@gmail.com">
+<span class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors break-all">isaacjung0702@gmail.com</span>
+<span class="material-symbols-outlined text-on-surface-variant shrink-0 group-hover:translate-x-1 transition-transform">arrow_outward</span>
+</a>
+<div class="flex flex-wrap items-center gap-x-10 gap-y-4 font-label-caps text-label-caps uppercase tracking-widest">
+<a class="text-primary hover:text-secondary transition-colors" href="https://www.linkedin.com/in/isaacwjung" target="_blank" rel="noopener">LinkedIn</a>
+<a class="text-primary hover:text-secondary transition-colors" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub</a>
+<a class="text-primary hover:text-secondary transition-colors" href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+<span class="text-on-surface-variant normal-case tracking-normal font-caption text-caption ml-auto">Pittsburgh, PA</span>
+</div>
+</div>
+</div>
+</div>
+</section>
 <!-- Footer -->
 <footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter border-t border-outline-variant bg-background">
 <div class="font-label-caps text-label-caps text-primary uppercase">
@@ -202,4 +245,16 @@
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub</a>
 </nav>
 </footer>
+<!-- Scroll to top -->
+<button aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 pointer-events-none hover:bg-secondary" id="toTop">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+<script>
+(function(){var b=document.getElementById('toTop');if(!b)return;
+b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+window.addEventListener('scroll',function(){var on=window.scrollY>400;b.style.opacity=on?'1':'0';b.style.pointerEvents=on?'auto':'none';},{passive:true});})();
+// Close mobile menu when a link inside it is tapped
+(function(){var m=document.getElementById('mobileMenu');if(!m)return;
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');m.classList.remove('flex');});});})();
+</script>
 </body></html>

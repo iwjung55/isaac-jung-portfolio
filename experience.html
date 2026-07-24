@@ -4,6 +4,13 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Experience - Isaac Jung</title>
+<meta content="Isaac Jung's experience — research, data analysis, and competition across statistics, machine learning, and economics." name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="Experience — Isaac Jung" property="og:title"/>
+<meta content="Isaac Jung's experience — research, data analysis, and competition across statistics, machine learning, and economics." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://iwjung55.github.io/isaac-jung-portfolio/experience.html" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -193,8 +200,20 @@
             transform: translateY(0);
         }
     </style>
+<style id="ux-enhance">
+        a, button { outline-offset: 3px; }
+        a:focus-visible, button:focus-visible { outline: 2px solid #526255; }
+        .skip-link { position: absolute; left: -999px; top: 0; z-index: 100; background:#0b0c0c; color:#fff; padding:10px 16px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; }
+        .skip-link:focus { left: 8px; top: 8px; }
+        #toTop { transition: opacity .3s ease, transform .3s ease; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+            .fade-up, .fade-in-section { opacity: 1 !important; transform: none !important; }
+        }
+</style>
 </head>
 <body class="bg-background text-on-background antialiased selection:bg-secondary-container selection:text-on-background font-body-md text-body-md">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="texture-overlay"></div>
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant transition-all duration-200 ease-in-out">
@@ -203,7 +222,7 @@
 <a class="text-on-surface-variant hover:opacity-70 transition-opacity transition-colors duration-300" href="about.html">About</a>
 <a class="text-on-surface-variant hover:opacity-70 transition-opacity transition-colors duration-300" href="projects.html">Projects</a>
 <a class="text-primary font-bold border-b-border-thin border-primary pb-1 hover:opacity-70 transition-opacity" href="experience.html">Experience</a>
-<a class="text-on-surface-variant hover:opacity-70 transition-opacity transition-colors duration-300" href="mailto:isaacjung0702@gmail.com">Contact</a>
+<a class="text-on-surface-variant hover:opacity-70 transition-opacity transition-colors duration-300" href="index.html#contact">Contact</a>
 </div>
 <a class="hidden md:inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary font-label-caps text-label-caps hover:bg-secondary transition-colors duration-300" href="mailto:isaacjung0702@gmail.com">Connect</a>
 <!-- Mobile Menu Icon -->
@@ -215,12 +234,12 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="projects.html">Projects</a>
 <a class="text-primary font-bold" href="experience.html">Experience</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="mailto:isaacjung0702@gmail.com">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#contact">Contact</a>
 <a class="mt-2 inline-block px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest text-center" href="mailto:isaacjung0702@gmail.com">Connect</a>
 </div>
 </nav>
 <!-- Main Content -->
-<main class="pt-[120px] pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen flex flex-col gap-24">
+<main id="main" class="pt-[120px] pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen flex flex-col gap-24">
 <!-- Header Section -->
 <header class="fade-in-section flex flex-col md:flex-row justify-between items-start md:items-end gap-12 border-b border-outline-variant pb-12">
 <div class="flex flex-col gap-4">
@@ -360,4 +379,16 @@
             });
         });
     </script>
+<!-- Scroll to top -->
+<button aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 pointer-events-none hover:bg-secondary" id="toTop">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+<script>
+(function(){var b=document.getElementById('toTop');if(!b)return;
+b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+window.addEventListener('scroll',function(){var on=window.scrollY>400;b.style.opacity=on?'1':'0';b.style.pointerEvents=on?'auto':'none';},{passive:true});})();
+// Close mobile menu when a link inside it is tapped
+(function(){var m=document.getElementById('mobileMenu');if(!m)return;
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');m.classList.remove('flex');});});})();
+</script>
 </body></html>
