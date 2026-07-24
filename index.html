@@ -106,10 +106,10 @@
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none; z-index: 9999;
-            opacity: 0.25; mix-blend-mode: multiply;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05; mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-        body { background-color: #F8F6F2; } /* Warm ivory override as requested */
+        body { background-color: #F8F6F2; } /* Warm ivory paper base */
     </style>
 </head>
 <body class="text-primary font-body-md min-h-screen relative overflow-x-hidden antialiased">
@@ -124,10 +124,18 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 pb-1 hover:opacity-70 border-b border-transparent" href="mailto:isaacjung0702@gmail.com">Contact</a>
 </nav>
 <a class="hidden md:block px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-secondary transition-colors duration-300" href="mailto:isaacjung0702@gmail.com">Connect</a>
-<!-- Mobile Menu Icon (simplified) -->
-<button class="md:hidden text-primary">
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-primary" aria-label="Toggle menu" onclick="var m=document.getElementById('mobileMenu');m.classList.toggle('hidden');m.classList.toggle('flex')">
 <span class="material-symbols-outlined">menu</span>
 </button>
+<!-- Mobile Menu Panel -->
+<div class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-4 bg-background border-b border-outline-variant px-margin-mobile py-6 font-body-md text-body-md uppercase tracking-wider" id="mobileMenu">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="projects.html">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="experience.html">Experience</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="mailto:isaacjung0702@gmail.com">Contact</a>
+<a class="mt-2 inline-block px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest text-center" href="mailto:isaacjung0702@gmail.com">Connect</a>
+</div>
 </header>
 <!-- Main Content -->
 <main class="pt-32 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 max-w-container-max mx-auto">
@@ -156,8 +164,9 @@
 <!-- Decorative fine lines -->
 <div class="absolute inset-0 border-l border-t border-outline-variant/30 md:border-transparent pointer-events-none"></div>
 <div class="relative w-full max-w-sm aspect-[3/4] p-2 bg-surface border border-outline-variant/50 shadow-[0_4px_40px_-10px_rgba(82,98,85,0.05)]">
-<div class="w-full h-full relative overflow-hidden border border-outline-variant/30">
-<img alt="Isaac Jung Portrait" class="object-cover w-full h-full filter grayscale hover:grayscale-0 transition-all duration-700 ease-in-out" data-alt="A striking, moody portrait of a professional Asian male in his late 20s, styled in minimalist, high-end fashion. The setting is a minimalist studio with soft, diffused natural light creating deep shadows and an editorial, Kinfolk-magazine aesthetic. The color palette is composed of warm ivory, charcoal, and subtle sage green undertones. The mood is calm, authoritative, and intellectual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfdUiYVw0CO1tB2uzsbiTrj94F6fi4YvizbTePA3b8Wt9JrBaABHe3T2mkYmvcvEbyyqECVvDL-CSo-el2WEadWLCkXQGm9C_hilPObpqDFjDgiBN6vx8A6YkmvX3vuS08mhg3tyBNUsJ7WwoEy58PiUc2Bh7F17MRZsp4ESCsmp_9s7zt3NWodPzggzd_biOj5IT0PCpgWjOw02Lib4j_MsiEZdCJ7MQbbmoHPpgCAhw2UvskUZ2diIlMBQQbpe4ZECgjr8N1LI3n"/>
+<div class="w-full h-full relative overflow-hidden border border-outline-variant/30 flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant">
+<span class="font-display text-[80px] leading-none text-primary">IJ</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Isaac Jung</span>
 </div>
 <!-- Caption -->
 <div class="absolute -bottom-6 right-0 font-caption text-caption text-on-surface-variant text-right">
@@ -190,7 +199,7 @@
 <nav class="flex gap-6 font-caption text-caption">
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="mailto:isaacjung0702@gmail.com">Email</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="https://www.linkedin.com/in/isaacwjung" target="_blank" rel="noopener">LinkedIn</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="#">Read.cv</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub</a>
 </nav>
 </footer>
 </body></html>

@@ -137,9 +137,17 @@
 <a class="px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-widest hover:opacity-80 transition-opacity duration-300 rounded-none border border-primary" href="mailto:isaacjung0702@gmail.com">Connect</a>
 </div>
 <!-- Mobile Menu Trigger -->
-<button class="md:hidden text-primary">
+<button class="md:hidden text-primary" aria-label="Toggle menu" onclick="var m=document.getElementById('mobileMenu');m.classList.toggle('hidden');m.classList.toggle('flex')">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
 </button>
+<!-- Mobile Menu Panel -->
+<div class="hidden md:hidden absolute top-full left-0 w-full flex-col gap-4 bg-background border-b border-outline-variant px-margin-mobile py-6 font-body-md text-body-md uppercase tracking-wider" id="mobileMenu">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-primary font-bold" href="projects.html">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="experience.html">Experience</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="mailto:isaacjung0702@gmail.com">Contact</a>
+<a class="mt-2 inline-block px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest text-center" href="mailto:isaacjung0702@gmail.com">Connect</a>
+</div>
 </nav>
 <!-- Main Content -->
 <main class="flex-grow pt-[140px] pb-32 px-margin-mobile md:px-margin-desktop relative z-10">
@@ -155,7 +163,10 @@
 <article class="col-span-1 md:col-span-12 group cursor-pointer border-b border-outline-variant pb-24 border-transparent hover:border-outline-variant transition-colors duration-500">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="md:col-span-7 overflow-hidden border border-outline-variant/30">
-<img alt="Project Image" class="w-full aspect-[4/3] object-cover transition-transform duration-1000 ease-out group-hover:scale-105" data-alt="A striking digital installation art piece featuring glowing, generative geometric shapes suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft white lighting that creates a bright, modern light-mode aesthetic. The artwork relies on a sophisticated palette of deep blacks and pristine whites, punctuated by intense accents of vibrant green. The mood is serene yet technologically advanced, shot in a highly detailed editorial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC90xjiApRGQu4smVvLdxlcSzp5tTrHb-ZPdbcrKN_MAfOG15uQJW6HIzlGSI7QMJcldIFVwpDJ9vdzi34GsvJ8zt0rO9VQ9kAhtViTgmGiA9tU70bzuFMpwdUYUVhtJyB_H-NdSWgjbViATDO0MWPjFlWCiFZomyDxMucP8BknXHwZun-U5pJhIyP4RuTTsNnZh0S1v9XlvGrS4FJTjP_jOMVPnNnRs07AgN5a0FNO0wCA2ITBgO5DpYoxyTuD1ygejF-HXjRPG3CO"/>
+<div class="w-full aspect-[4/3] flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-1000 ease-out group-hover:scale-105">
+<span class="material-symbols-outlined" style="font-size:56px">trending_up</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Quantitative Trading</span>
+</div>
 </div>
 <div class="md:col-span-4 md:col-start-9 mt-8 md:mt-0 flex flex-col justify-center">
 <div class="flex flex-wrap gap-2 mb-6">
@@ -180,7 +191,10 @@
 <!-- Project 2 -->
 <article class="col-span-1 md:col-span-6 group cursor-pointer border border-transparent hover:border-outline-variant p-0 md:hover:p-6 -mx-6 md:-mx-6 transition-all duration-500">
 <div class="overflow-hidden border border-outline-variant/30 mb-6">
-<img alt="Project Image" class="w-full aspect-[3/4] object-cover transition-transform duration-1000 ease-out group-hover:scale-105" data-alt="A minimal, architectural desktop workspace bathed in soft, natural morning light casting long diagonal shadows. A sleek, matte black monitor displays a stark, typographic editorial website interface in light mode. The surrounding desk includes physical drafting tools, a textured off-white ceramic mug, and a small potted bonsai, embodying a Japanese editorial minimalist aesthetic with organic warmth and tactile qualities." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc9gEZOQAgZgidqxudGBvW1iJNWS_6hiTdKWOXgvuU-gUg0ybA4ibASkHzwqgwFo_Dgo5AVaGNAFNBTws8X2S72ztR9VDjhCzWES6mezmZjuTCM4xvrq2L36J5WwyR0ra3-5uS5NvjfAgDT_pKkO2zyJFnQLSHnCYNuxRewriqSOa4nKCXU7_NuZed81sBJQ_f8ML3bwRgsqJL3-hrBpx8EgoXClEYd0puM9lNy_tzJe56Xcm0NmZF7DwNmP3UmczA31vO1uTZrFcP"/>
+<div class="w-full aspect-[3/4] flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-1000 ease-out group-hover:scale-105">
+<span class="material-symbols-outlined" style="font-size:56px">article</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Essay Competition</span>
+</div>
 </div>
 <div class="flex flex-wrap gap-2 mb-4">
 <span class="px-3 py-1 border border-outline text-on-surface-variant font-label-caps text-label-caps tracking-wider">ECONOMICS</span>
@@ -196,7 +210,10 @@
 <!-- Project 3 -->
 <article class="col-span-1 md:col-span-6 group cursor-pointer border border-transparent hover:border-outline-variant p-0 md:hover:p-6 -mx-6 md:-mx-6 transition-all duration-500 md:mt-24">
 <div class="overflow-hidden border border-outline-variant/30 mb-6">
-<img alt="Project Image" class="w-full aspect-square object-cover transition-transform duration-1000 ease-out group-hover:scale-105" data-alt="A macro photography shot of highly textured, thick cotton paper featuring an abstract debossed geometric pattern. The lighting is low-angle, highlighting the peaks and valleys of the paper grain. Subtle, desaturated sage green ink is partially visible in the crevices. The overall image evokes a sense of premium stationery, quietude, and refined tactile craftsmanship, perfectly suited for a light-mode minimalist design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCJkzZSThuEsehItYNfBy8kxf_OASG6W-ZXakBfMhcXBMBp9jTGiDEMwkhcRD7jcFytZWxHtEZZ9GnPNjP3mcEJEPFySYZnfBFyGFChF9n7tjedG6yVvxoVc1e-Tekjg7sj3sTtY-LL44rOtuC_F9enIYFy1bHTm-AcNV0zHtg6RUhaWeVHYanZ8EddexNQ5aHArU10_WR5BQw6QXcPZxK_0TfsPDDKDxHHfk3TxZtk9V-1wzlsbykTFcXoGbWGBlmo7XxJyY8nPAd"/>
+<div class="w-full aspect-square flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-1000 ease-out group-hover:scale-105">
+<span class="material-symbols-outlined" style="font-size:56px">public</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Public Policy</span>
+</div>
 </div>
 <div class="flex flex-wrap gap-2 mb-4">
 <span class="px-3 py-1 border border-outline text-on-surface-variant font-label-caps text-label-caps tracking-wider">PUBLIC POLICY</span>
@@ -230,7 +247,10 @@
 </div>
 </div>
 <div class="md:col-span-6 md:col-start-7 order-1 md:order-2 overflow-hidden border border-outline-variant/30">
-<img alt="Project Image" class="w-full aspect-[4/3] object-cover transition-transform duration-1000 ease-out group-hover:scale-105" data-alt="A clean, minimalist flat-lay of several high-end mobile devices displaying an elegant, monochrome e-commerce application interface. The devices rest on a stark, off-white textured stone surface. The lighting is diffused and even, eliminating harsh reflections and emphasizing the sharp, high-contrast typography and subtle 1px border details of the digital UI. The mood is clinical, professional, and uncompromisingly modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpiKPUiSMPCV_U_TugVjs9Xai4YkEmHOfCtIWlX5x2SnuPQvGHauMsm72AhtIey5NAwfS86lTTyRzqluA1xnM5B0gtRWeLuruOVIIPYxuCg9VFvc4m76WuKKtJJs30xe_jZGCLmBORBmMeQKcK43zx4YTdcyCXkJepdVhHHEv_b5Sw1I8-P50oln2OyDC787PvsLvtD67-X-uuJbd_l5QJbGHWNW5Il8aSkcF3ikHarUABUHIiN1u9VR6EORa_HhF9_8T0ePEK3kzu"/>
+<div class="w-full aspect-[4/3] flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-1000 ease-out group-hover:scale-105">
+<span class="material-symbols-outlined" style="font-size:56px">verified_user</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">AI Safety Research</span>
+</div>
 </div>
 </div>
 </article>
@@ -244,7 +264,7 @@
 <ul class="flex flex-wrap gap-8 font-caption text-caption text-on-surface-variant">
 <li><a class="underline-offset-4 hover:underline hover:text-secondary transition-colors duration-300" href="mailto:isaacjung0702@gmail.com">Email</a></li>
 <li><a class="underline-offset-4 hover:underline hover:text-secondary transition-colors duration-300" href="https://www.linkedin.com/in/isaacwjung" target="_blank" rel="noopener">LinkedIn</a></li>
-<li><a class="underline-offset-4 hover:underline hover:text-secondary transition-colors duration-300" href="#">Read.cv</a></li>
+<li><a class="underline-offset-4 hover:underline hover:text-secondary transition-colors duration-300" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub</a></li>
 </ul>
 </footer>
 </body></html>
