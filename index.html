@@ -383,20 +383,21 @@
 </button>
 <script>
 (function(){
-  // Scroll reveal (progressive enhancement). Content is visible by default (.js gate);
-  // this only adds a downward fade-in, and a safety sweep guarantees nothing stays hidden.
-  var reveals = document.querySelectorAll('.reveal');
-  function revealNear(){ reveals.forEach(function(el){ if(!el.classList.contains('is-in') && el.getBoundingClientRect().top < window.innerHeight * 1.1){ el.classList.add('is-in'); } }); }
-  if ('IntersectionObserver' in window) {
-    var ro = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); ro.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    reveals.forEach(function(el){ ro.observe(el); });
-    revealNear();
-    window.addEventListener('load', revealNear);
-    window.addEventListener('hashchange', function(){ setTimeout(revealNear, 60); });
-    setTimeout(revealNear, 600);
-  } else { reveals.forEach(function(el){ el.classList.add('is-in'); }); }
+  // Scroll-driven reveal (progressive enhancement). Content is visible by default (.js gate);
+  // any element in or above the viewport is revealed, so jumps/deep-links can never leave it hidden.
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  function revealNear(){
+    var vh = window.innerHeight;
+    for (var i = reveals.length - 1; i >= 0; i--) {
+      if (reveals[i].getBoundingClientRect().top < vh * 0.9) { reveals[i].classList.add('is-in'); reveals.splice(i, 1); }
+    }
+  }
+  revealNear();
+  window.addEventListener('scroll', revealNear, { passive: true });
+  window.addEventListener('resize', revealNear, { passive: true });
+  window.addEventListener('load', revealNear);
+  window.addEventListener('hashchange', function(){ setTimeout(revealNear, 80); });
+  setTimeout(revealNear, 400);
 
   // Scroll-to-top
   var b = document.getElementById('toTop');
