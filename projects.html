@@ -46,6 +46,15 @@
             *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
             .fade-up, .fade-in-section { opacity: 1 !important; transform: none !important; }
         }
+        /* Touch ergonomics: enlarge tap targets on coarse (touch) pointers */
+        @media (pointer: coarse) {
+            footer a { min-height: 40px; display: inline-flex; align-items: center; }
+        }
+        @media (pointer: coarse) and (max-width: 767px) {
+            #mobileMenu a { min-height: 44px; display: flex; align-items: center; }
+            #mobileMenu a[href^="mailto"] { justify-content: center; }
+            button[aria-label="Toggle menu"] { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+        }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased bg-noise flex flex-col min-h-screen">
