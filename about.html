@@ -68,8 +68,8 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="texture-overlay"></div>
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant dark:border-outline transition-all duration-200 ease-in-out">
-<a class="font-headline-md text-headline-md font-normal text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity" href="index.html">
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant transition-all duration-200 ease-in-out">
+<a class="font-headline-md text-headline-md font-normal text-primary hover:opacity-70 transition-opacity" href="index.html">
             ISAAC JUNG
         </a>
 <div class="hidden md:flex items-center gap-8">
@@ -88,8 +88,8 @@
 </div>
 <div class="flex items-center gap-4">
 <a class="hidden md:flex font-label-caps text-label-caps bg-primary text-on-primary px-6 py-3 hover:bg-surface-tint transition-colors uppercase tracking-widest" href="mailto:isaacjung0702@gmail.com">Connect</a>
-<button class="md:hidden flex items-center justify-center p-2 text-primary hover:opacity-70 transition-opacity" aria-label="Toggle menu" onclick="var m=document.getElementById('mobileMenu');m.classList.toggle('hidden');m.classList.toggle('flex')">
-<span class="material-symbols-outlined">menu</span>
+<button class="md:hidden flex items-center justify-center p-2 text-primary hover:opacity-70 transition-opacity" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu" onclick="var m=document.getElementById('mobileMenu');var h=m.classList.toggle('hidden');m.classList.toggle('flex');this.setAttribute('aria-expanded',String(!h))">
+<span aria-hidden="true" class="material-symbols-outlined">menu</span>
 </button>
 </div>
 <!-- Mobile Menu Panel -->
@@ -106,7 +106,7 @@
 <!-- Left: Editorial Text -->
 <div class="md:col-span-5 md:col-start-2 flex flex-col justify-center order-2 md:order-1 pt-12 md:pt-0 pr-0 md:pr-12 relative">
 <div class="absolute -left-12 top-1/4 hidden md:block fade-up">
-<span class="font-label-caps text-label-caps text-outline rotate-90 block origin-left whitespace-nowrap">01 / PERSPECTIVE</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant rotate-90 block origin-left whitespace-nowrap">01 / PERSPECTIVE</span>
 </div>
 <div class="mb-8 fade-up">
 <span class="font-label-caps text-label-caps text-primary border border-outline-variant px-2 py-1 inline-block mb-4">BACKGROUND</span>
@@ -124,7 +124,7 @@
 <div class="mt-12 fade-up" style="transition-delay: 400ms;">
 <a class="group flex items-center gap-2 font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors w-fit" href="resume.pdf" target="_blank" rel="noopener">
                         View Full Resume
-                        <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        <span aria-hidden="true" class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -145,7 +145,7 @@
 </div>
 </main>
 <!-- Footer -->
-<footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter bg-background dark:bg-background border-t border-outline-variant dark:border-outline">
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter bg-background border-t border-outline-variant">
 <div class="font-label-caps text-label-caps text-primary">
             © 2026 ISAAC JUNG — ALL RIGHTS RESERVED
         </div>
@@ -194,7 +194,7 @@
     </script>
 <!-- Scroll to top -->
 <button aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center opacity-0 pointer-events-none hover:bg-secondary" id="toTop">
-<span class="material-symbols-outlined">arrow_upward</span>
+<span aria-hidden="true" class="material-symbols-outlined">arrow_upward</span>
 </button>
 <script>
 (function(){var b=document.getElementById('toTop');if(!b)return;
@@ -202,6 +202,6 @@ b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})
 window.addEventListener('scroll',function(){var on=window.scrollY>400;b.style.opacity=on?'1':'0';b.style.pointerEvents=on?'auto':'none';},{passive:true});})();
 // Close mobile menu when a link inside it is tapped
 (function(){var m=document.getElementById('mobileMenu');if(!m)return;
-m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');m.classList.remove('flex');});});})();
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');m.classList.remove('flex');var b=document.querySelector('button[aria-label="Toggle menu"]');if(b)b.setAttribute('aria-expanded','false');});});})();
 </script>
 </body></html>
