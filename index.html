@@ -2,6 +2,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>document.documentElement.classList.add('js');</script>
 <title>Isaac Jung — Data Science &amp; Machine Learning</title>
 <meta content="Isaac Jung — Statistics &amp; Machine Learning student at Carnegie Mellon. Data science, LLM-safety research, and quantitative/algorithmic trading. Turning messy data into honest, quantitative insight." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -24,8 +25,9 @@
             opacity: 0.05; mix-blend-mode: multiply;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-        /* Editorial reveal on scroll (progressive enhancement) */
-        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s cubic-bezier(.2,.8,.2,1), transform .5s cubic-bezier(.2,.8,.2,1); }
+        /* Editorial reveal on scroll — visible by default; hidden only when JS is active (progressive enhancement) */
+        .reveal { transition: opacity .5s cubic-bezier(.2,.8,.2,1), transform .5s cubic-bezier(.2,.8,.2,1); }
+        .js .reveal { opacity: 0; transform: translateY(16px); }
         .reveal.is-in { opacity: 1; transform: none; }
         /* Active nav link (scroll-spy) */
         .nav-link[data-active="true"] { color: #0b0c0c; }
@@ -381,13 +383,19 @@
 </button>
 <script>
 (function(){
-  // Scroll reveal (progressive enhancement)
+  // Scroll reveal (progressive enhancement). Content is visible by default (.js gate);
+  // this only adds a downward fade-in, and a safety sweep guarantees nothing stays hidden.
   var reveals = document.querySelectorAll('.reveal');
+  function revealNear(){ reveals.forEach(function(el){ if(!el.classList.contains('is-in') && el.getBoundingClientRect().top < window.innerHeight * 1.1){ el.classList.add('is-in'); } }); }
   if ('IntersectionObserver' in window) {
     var ro = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); ro.unobserve(e.target); } });
     }, { threshold: 0.12 });
     reveals.forEach(function(el){ ro.observe(el); });
+    revealNear();
+    window.addEventListener('load', revealNear);
+    window.addEventListener('hashchange', function(){ setTimeout(revealNear, 60); });
+    setTimeout(revealNear, 600);
   } else { reveals.forEach(function(el){ el.classList.add('is-in'); }); }
 
   // Scroll-to-top
