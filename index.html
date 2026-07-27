@@ -2,7 +2,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},1800);}}catch(e){}})();</script>
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},3000);}}catch(e){}})();</script>
 <title>Isaac Jung — Data Science &amp; Machine Learning</title>
 <meta content="Isaac Jung — Statistics &amp; Machine Learning at Carnegie Mellon. Data science, LLM-safety research, and algorithmic trading." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -91,10 +91,39 @@
         }
         /* ---- Personal layer: water polo, cello, dog. Decorative only: aria-hidden,
                pointer-events:none, never affects layout, all opt out of reduced motion. ---- */
-        .pball { position: absolute; left: 45%; bottom: 96px; width: 68px; height: 68px; pointer-events: none; z-index: 2;
-                 will-change: transform; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+        /* Water polo shot: the ball fires left-to-right and wipes the name into view.
+           Name RESTS VISIBLE; JS arms the clip only when it is about to animate. */
+        .shotline { position: relative; display: inline-block; max-width: 100%; }
+        .shotline.armed .hero-name { clip-path: inset(0 100% 0 0); }
+        .shotline.shot .hero-name { animation: nameWipe 1s cubic-bezier(.25,.7,.3,1) .1s forwards; }
+        @keyframes nameWipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -6% 0 0); } }
+        .pball { position: absolute; right: -84px; top: 50%; margin-top: -33px; width: 66px; height: 66px;
+                 pointer-events: none; z-index: 3; will-change: transform; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
         .pball svg { display: block; width: 100%; height: 100%; }
-        .pball .wave { position: absolute; left: -14px; right: -14px; bottom: -9px; height: 1px; background: #1f6f4f; opacity: .32; }
+        .shotline.shot .pball { animation: ballShot 1.12s cubic-bezier(.24,.62,.3,1) forwards; transition: none; }
+        @keyframes ballShot {
+            0%   { transform: translateX(var(--travel, -900px)) rotate(0deg); opacity: 0; }
+            7%   { opacity: 1; }
+            100% { transform: translateX(0) rotate(1000deg); opacity: 1; }
+        }
+        .wake { position: absolute; left: 0; right: -60px; top: 50%; height: 2px; opacity: 0; transform-origin: left;
+                background: linear-gradient(90deg, transparent, #1f6f4f 45%, transparent); }
+        .shotline.shot .wake { animation: wake 1.12s ease-out forwards; }
+        @keyframes wake { 0% { opacity: 0; transform: scaleX(0);} 30% { opacity: .55; } 100% { opacity: 0; transform: scaleX(1);} }
+        .drop { position: absolute; left: calc(var(--p) * 100%); top: 50%; width: 7px; height: 7px; border-radius: 50%;
+                background: #1f6f4f; opacity: 0; pointer-events: none; }
+        .shotline.shot .drop { animation: splash .6s ease-out forwards; animation-delay: calc(var(--p) * .92s); }
+        @keyframes splash {
+            0%   { opacity: .9; transform: translate(0,0) scale(.3); }
+            55%  { opacity: .7; transform: translate(var(--dx,0), -27px) scale(var(--s,1)); }
+            100% { opacity: 0;  transform: translate(calc(var(--dx,0) * 1.7), -4px) scale(.35); }
+        }
+        .tagline em { font-style: normal; color: #1f6f4f; }
+        @media (prefers-reduced-motion: reduce) {
+            .shotline.armed .hero-name { clip-path: none !important; }
+            .shotline.shot .pball, .shotline.shot .wake, .shotline.shot .drop, .shotline.shot .hero-name { animation: none !important; }
+            .drop, .wake { display: none; }
+        }
         .cello { position: absolute; left: 2px; top: 176px; width: 54px;
                  pointer-events: auto; z-index: 2; opacity: .5; transition: opacity .4s ease; }
         .cello:hover { opacity: .82; }
@@ -115,7 +144,6 @@
         .dog.trot .tail { animation: wag .5s ease-in-out infinite; }
         @keyframes wag { 0%,100% { transform: rotate(-16deg); } 50% { transform: rotate(18deg); } }
         @media (prefers-reduced-motion: reduce) {
-            .pball { transition: none !important; }
             .cstring.pluck { animation: none !important; }
             .dog { opacity: .85 !important; transform: none !important; }
             .dog.trot .tail { animation: none !important; }
@@ -195,18 +223,25 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
 <div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant">00 / INDEX</div>
-<h1 class="font-display text-headline-lg-mobile md:text-display text-primary mb-6 max-w-2xl leading-tight">
-                    Data × Models × Products
-                </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed mb-8">
+<div class="shotline" id="shotline">
+<h1 class="hero-name font-display text-headline-lg-mobile md:text-display text-primary leading-none" id="heroName">Isaac Jung</h1>
+<div aria-hidden="true" class="pball" id="pball"><svg viewBox="0 0 60 60">
+<defs><clipPath id="wpc"><circle cx="30" cy="30" r="26.2"/></clipPath></defs>
+<circle cx="30" cy="30" r="26.2" fill="#efc23c" stroke="#0b0c0c" stroke-width="1.6"/>
+<g clip-path="url(#wpc)" fill="none" stroke="#0b0c0c" stroke-width="1.5" stroke-linecap="round">
+<path d="M4 20 Q30 11 56 20"/><path d="M4 40 Q30 49 56 40"/>
+<path d="M20 4 Q11 30 20 56"/><path d="M40 4 Q49 30 40 56"/>
+</g>
+<g clip-path="url(#wpc)" fill="#0b0c0c" opacity=".15"><circle cx="43.0" cy="30.0" r="0.8"/><circle cx="40.5" cy="37.6" r="0.8"/><circle cx="34.0" cy="42.4" r="0.8"/><circle cx="26.0" cy="42.4" r="0.8"/><circle cx="19.5" cy="37.6" r="0.8"/><circle cx="17.0" cy="30.0" r="0.8"/><circle cx="19.5" cy="22.4" r="0.8"/><circle cx="26.0" cy="17.6" r="0.8"/><circle cx="34.0" cy="17.6" r="0.8"/><circle cx="40.5" cy="22.4" r="0.8"/><circle cx="49.7" cy="37.2" r="0.8"/><circle cx="45.5" cy="44.2" r="0.8"/><circle cx="38.9" cy="49.0" r="0.8"/><circle cx="30.9" cy="51.0" r="0.8"/><circle cx="22.8" cy="49.7" r="0.8"/><circle cx="15.8" cy="45.5" r="0.8"/><circle cx="11.0" cy="38.9" r="0.8"/><circle cx="9.0" cy="30.9" r="0.8"/><circle cx="10.3" cy="22.8" r="0.8"/><circle cx="14.5" cy="15.8" r="0.8"/><circle cx="21.1" cy="11.0" r="0.8"/><circle cx="29.1" cy="9.0" r="0.8"/><circle cx="37.2" cy="10.3" r="0.8"/><circle cx="44.2" cy="14.5" r="0.8"/><circle cx="49.0" cy="21.1" r="0.8"/><circle cx="51.0" cy="29.1" r="0.8"/></g>
+<path d="M14 16 Q19 11 25 9.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".6"/>
+</svg></div>
+<span aria-hidden="true" class="wake"></span>
+<span class="drop" style="--p:0.22;--dx:-6px;--s:1"></span><span class="drop" style="--p:0.3;--dx:4px;--s:1"></span><span class="drop" style="--p:0.38;--dx:-3px;--s:0.7"></span><span class="drop" style="--p:0.46;--dx:7px;--s:1"></span><span class="drop" style="--p:0.54;--dx:-5px;--s:0.7"></span><span class="drop" style="--p:0.62;--dx:3px;--s:1"></span><span class="drop" style="--p:0.7;--dx:-7px;--s:0.7"></span><span class="drop" style="--p:0.78;--dx:5px;--s:1"></span><span class="drop" style="--p:0.86;--dx:-4px;--s:1"></span>
+</div>
+<p class="tagline font-display text-headline-md md:text-headline-lg-mobile text-on-surface-variant mt-5 mb-7 leading-tight">Data <em>×</em> Models <em>×</em> Products</p>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed mb-9">
                     Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and trading systems.
                 </p>
-<!-- technical metadata block -->
-<dl class="font-mono text-caption text-on-surface-variant grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 mb-10 max-w-md">
-<dt class="text-outline">LOCATION</dt><dd class="text-primary">Pittsburgh, PA</dd>
-<dt class="text-outline">FOCUS</dt><dd class="text-primary">Statistics · ML · Quantitative Research</dd>
-<dt class="text-outline">STATUS</dt><dd class="text-secondary flex items-center gap-2"><span aria-hidden="true" class="inline-block shrink-0 w-[7px] h-[7px] bg-secondary"></span>Open to internships</dd>
-</dl>
 <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
 <a class="btn-fill inline-flex items-center gap-2 border border-primary px-6 py-3 font-mono text-label-caps uppercase tracking-widest" href="#work">
                         View Work
@@ -222,19 +257,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </button>
 </div>
 </div>
-<div aria-hidden="true" class="pball" id="pball">
-<span class="wave"></span>
-<svg viewBox="0 0 60 60">
-<defs><clipPath id="wpc"><circle cx="30" cy="30" r="26.2"/></clipPath></defs>
-<circle cx="30" cy="30" r="26.2" fill="#efc23c" stroke="#0b0c0c" stroke-width="1.6"/>
-<g clip-path="url(#wpc)" fill="none" stroke="#0b0c0c" stroke-width="1.5" stroke-linecap="round">
-<path d="M4 20 Q30 11 56 20"/><path d="M4 40 Q30 49 56 40"/>
-<path d="M20 4 Q11 30 20 56"/><path d="M40 4 Q49 30 40 56"/>
-</g>
-<g clip-path="url(#wpc)" fill="#0b0c0c" opacity=".15"><circle cx="43.0" cy="30.0" r="0.8"/><circle cx="40.5" cy="37.6" r="0.8"/><circle cx="34.0" cy="42.4" r="0.8"/><circle cx="26.0" cy="42.4" r="0.8"/><circle cx="19.5" cy="37.6" r="0.8"/><circle cx="17.0" cy="30.0" r="0.8"/><circle cx="19.5" cy="22.4" r="0.8"/><circle cx="26.0" cy="17.6" r="0.8"/><circle cx="34.0" cy="17.6" r="0.8"/><circle cx="40.5" cy="22.4" r="0.8"/><circle cx="49.7" cy="37.2" r="0.8"/><circle cx="45.5" cy="44.2" r="0.8"/><circle cx="38.9" cy="49.0" r="0.8"/><circle cx="30.9" cy="51.0" r="0.8"/><circle cx="22.8" cy="49.7" r="0.8"/><circle cx="15.8" cy="45.5" r="0.8"/><circle cx="11.0" cy="38.9" r="0.8"/><circle cx="9.0" cy="30.9" r="0.8"/><circle cx="10.3" cy="22.8" r="0.8"/><circle cx="14.5" cy="15.8" r="0.8"/><circle cx="21.1" cy="11.0" r="0.8"/><circle cx="29.1" cy="9.0" r="0.8"/><circle cx="37.2" cy="10.3" r="0.8"/><circle cx="44.2" cy="14.5" r="0.8"/><circle cx="49.0" cy="21.1" r="0.8"/><circle cx="51.0" cy="29.1" r="0.8"/></g>
-<path d="M14 16 Q19 11 25 9.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".6"/>
-</svg>
-</div><div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
+<div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
 <div class="absolute inset-0 border-l border-t border-outline-variant/30 md:border-transparent pointer-events-none"></div>
 <div class="relative w-full max-w-sm aspect-[3/4] p-2 bg-surface border border-outline-variant/50 shadow-[0_18px_70px_-24px_rgba(11,12,12,0.28)]">
 <div class="w-full h-full relative overflow-hidden border border-outline-variant/30 bg-surface-container-high">
@@ -511,11 +534,11 @@ FORM: Vertical expandable index — an extension of the established single-page 
     setTimeout(function(){ pl.style.display = 'none'; }, 550);
   }
   var iv = setInterval(function(){
-    v = Math.min(100, v + Math.random() * 26 + 14);
+    v = Math.min(100, v + Math.random() * 13 + 6);
     if (pct) pct.textContent = Math.round(v) + '%';
-    if (v >= 100) { clearInterval(iv); setTimeout(finish, 140); }
-  }, 70);
-  setTimeout(finish, 1200); // hard safety: never stuck
+    if (v >= 100) { clearInterval(iv); setTimeout(finish, 260); }
+  }, 115);
+  setTimeout(finish, 2400); // hard safety: never stuck
 })();
 (function(){
   // Scroll-driven reveal (progressive enhancement). Content is visible by default (.js gate);
@@ -571,7 +594,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
     // Move the mouse and the name unfolds. Touch, keyboard, and no-move visitors
     // still get it: every path below ends in unfold().
     window.addEventListener('mousemove', onMove, { passive: true });
-    setTimeout(unfold, document.documentElement.classList.contains('preload') ? 2200 : 1700);
+    setTimeout(unfold, document.documentElement.classList.contains('preload') ? 2050 : 420);
     window.addEventListener('load', function(){ setTimeout(unfold, 2400); });
   }
 })();
@@ -580,27 +603,40 @@ FORM: Vertical expandable index — an extension of the established single-page 
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = !window.matchMedia || matchMedia('(pointer: fine)').matches;
 
-  // Water polo ball: rolls with scroll, drifts toward the cursor, bobs on the waterline.
+  // Water polo shot -> then the ball roams (scroll roll + cursor drift).
   var ball = document.getElementById('pball');
+  var shotline = document.getElementById('shotline');
+  var live = false, spin = 0, dx = 0, dy = 0, bob = 0;
+  var paint = function(){
+    if (!live || !ball) return;
+    ball.style.transform = 'translate(' + dx + 'px,' + (dy + bob) + 'px) rotate(' + spin + 'deg)';
+  };
+  if (shotline && ball) {
+    var settle = function(){ shotline.classList.remove('armed'); shotline.classList.remove('shot'); live = true; paint(); };
+    if (reduce || window.innerWidth < 900) {
+      live = true;                                   // no shot; name simply visible
+    } else {
+      shotline.classList.add('armed');
+      shotline.style.setProperty('--travel', -(shotline.offsetWidth + 180) + 'px');
+      var fired = false;
+      var fire = function(){ if (fired) return; fired = true; shotline.classList.add('shot'); setTimeout(settle, 1180); };
+      var wait = document.documentElement.classList.contains('preload') ? 2250 : 420;
+      setTimeout(fire, wait);
+      setTimeout(settle, wait + 2600);               // failsafe: the name always ends visible
+    }
+  } else { live = true; }
   if (ball && !reduce) {
-    var spin = 0, dx = 0, dy = 0, bob = 0;
-    var paint = function(){ ball.style.transform = 'translate(' + dx + 'px,' + (dy + bob) + 'px) rotate(' + spin + 'deg)'; };
     window.addEventListener('scroll', function(){
-      spin = window.scrollY * 0.45;
-      bob = Math.sin(window.scrollY / 90) * 5;
-      paint();
+      spin = window.scrollY * 0.45; bob = Math.sin(window.scrollY / 90) * 5; paint();
     }, { passive: true });
     if (fine) {
       window.addEventListener('mousemove', function(e){
         var r = ball.getBoundingClientRect();
         var mx = e.clientX - (r.left + r.width / 2), my = e.clientY - (r.top + r.height / 2);
-        var d = Math.max(Math.hypot(mx, my), 1);
-        var pull = Math.min(26, 2600 / d);           // closer cursor => stronger drift
-        dx = (mx / d) * pull; dy = (my / d) * pull;
-        paint();
+        var d = Math.max(Math.hypot(mx, my), 1), pull = Math.min(24, 2400 / d);
+        dx = (mx / d) * pull; dy = (my / d) * pull; paint();
       }, { passive: true });
     }
-    paint();
   }
 
   // Cello: pluck the string your cursor crosses.
