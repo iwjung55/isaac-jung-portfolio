@@ -75,6 +75,24 @@
         .btn-ghost:hover { color: #1f6f4f; border-color: #1f6f4f; gap: 11px; }
         .work-minor { display: flex; align-items: baseline; gap: 20px; padding: 22px 8px; }
         @media (max-width: 767px) { .work-tile { display: none; } .work-body { padding-left: 8px; } .work-summary { gap: 14px; padding: 22px 4px; } }
+        /* ===== OVERDRIVE 1: living water surface (hero ground) ===== */
+        #water { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0 !important;
+                 pointer-events: none; opacity: .95; }
+        /* ===== OVERDRIVE 2: computed plots inside work rows ===== */
+        .plot-fig { margin: 22px 0 0; max-width: 560px; }
+        .plot-fig canvas { display: block; width: 100%; height: 92px; }
+        .plot-cap { display: flex; gap: 10px; align-items: baseline; margin-top: 8px;
+                    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;
+                    letter-spacing: .1em; text-transform: uppercase; color: #6e746e; }
+        .plot-cap b { font-weight: 500; color: #1f6f4f; }
+        .plot-cap .sch { margin-left: auto; color: #8b928b; }
+        /* ===== OVERDRIVE 3: cinematic structure ===== */
+        @supports (animation-timeline: scroll()) {
+            #progress { animation: progressGrow linear both; animation-timeline: scroll(root block); }
+            @keyframes progressGrow { from { width: 0; } to { width: 100%; } }
+        }
+        ::view-transition-group(workrow) { animation-duration: .42s; animation-timing-function: cubic-bezier(.2,.8,.25,1); }
+        @media (prefers-reduced-motion: reduce) { #water { display: none; } }
         /* Wordmark — folds open on arrival, waves on hover */
         .wordmark { display: inline-flex; perspective: 620px; }
         /* Letters rest VISIBLE. JS adds .wm-fold for one beat to fold them shut, then releases —
@@ -245,6 +263,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <section class="plot-ground pt-40 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 md:pb-32 max-w-container-max mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
+<canvas aria-hidden="true" id="water"></canvas>
 <div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant">00 / INDEX</div>
 <div class="shotline" id="shotline">
 <h1 class="hero-name font-display text-headline-lg-mobile md:text-display text-primary leading-none" id="heroName">Isaac Jung</h1>
@@ -367,6 +386,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </summary>
 <div class="work-body">
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">An automated arbitrage bot that monitors markets for pricing inefficiencies and acts on them programmatically — an engineering extension of the rules-based arbitrage strategy that placed 2nd at the CMU MSCF Rotman Trading Competition.</p>
+<figure class="plot-fig"><canvas data-plot="spread" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Cross-venue spread the bot watches for<span class="sch">SCHEMATIC — NOT TRADE DATA</span></figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PERSONAL PROJECT</span><a class="btn-ghost" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a></div>
 </div>
 </details><details class="work-item group border-t border-outline-variant">
@@ -381,6 +401,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </summary>
 <div class="work-body">
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">2nd place, arbitrage track. Implemented a rules-based arbitrage strategy to accumulate roughly $40K in profits, then worked to preserve those gains — executing on price discrepancies for up to $200K in trading opportunities.</p>
+<figure class="plot-fig"><canvas data-plot="bars2" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Profit accumulated vs. opportunity executed</figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">CARNEGIE MELLON · SEP 2025</span></div>
 </div>
 </details><details class="work-item group border-t border-outline-variant">
@@ -395,6 +416,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </summary>
 <div class="work-body">
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">As an undergraduate research assistant at Carnegie Mellon, evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks for alignment and misuse risk — assessing the robustness of current evaluation methods and flagging recurring failure patterns to strengthen benchmark design.</p>
+<figure class="plot-fig"><canvas data-plot="density" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> 5,000+ prompts across 50 benchmarks</figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">CARNEGIE MELLON · 2026</span></div>
 </div>
 </details><details class="work-item group border-t border-outline-variant">
@@ -424,6 +446,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </summary>
 <div class="work-body">
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Two-time finalist (Oxford, UK) in a global essay competition drawing ~19,000 entries in 2023 and over 43,000 in 2024. Essays analyzed economic, demographic, and historical trends, including the causes and consequences of global population decline.</p>
+<figure class="plot-fig"><canvas data-plot="growth" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Entries in the year I was a finalist</figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">OXFORD · 2023–2024</span></div>
 </div>
 </details>
@@ -658,7 +681,9 @@ FORM: Vertical expandable index — an extension of the established single-page 
       shotline.classList.add('armed');
       shotline.style.setProperty('--travel', -(shotline.offsetWidth + 210) + 'px');
       var fired = false;
-      var fire = function(){ if (fired) return; fired = true; shotline.classList.add('shot'); setTimeout(settle, 2200); };
+      var fire = function(){ if (fired) return; fired = true; shotline.classList.add('shot');
+        setTimeout(function(){ if (window.__waterSplash) window.__waterSplash(); }, 1340);
+        setTimeout(settle, 2200); };
       var wait = document.documentElement.classList.contains('preload') ? 2250 : 420;
       setTimeout(fire, wait);
       setTimeout(settle, wait + 3600);               // failsafe: the name always ends visible
@@ -727,6 +752,209 @@ FORM: Vertical expandable index — an extension of the established single-page 
       else { location.href = 'mailto:' + email; }
     });
   });
+})();
+</script>
+
+<script>
+/* ============ OVERDRIVE ============
+   1) Living water: a plotted wave field (superposed decaying radial waves).
+   2) Computed plots: real figures drawn to canvas, animated on open.
+   3) Cinematic: View Transitions morph work rows; scroll-timeline drives progress.
+   All three are decorative enhancements — nothing here gates content. ============ */
+(function(){
+  var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 1. WATER ---------- */
+  (function(){
+    var cv = document.getElementById('water');
+    if (!cv || REDUCE) return;
+    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2);
+    var ripples = [], t0 = performance.now(), running = false, visible = true;
+    function size(){
+      var r = cv.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function addRipple(x, y, amp){
+      if (ripples.length > 14) ripples.shift();
+      ripples.push({ x: x, y: y, t: performance.now(), amp: amp });
+    }
+    function draw(now){
+      if (!running) return;
+      var el = (now - t0) / 1000;
+      ctx.clearRect(0, 0, W, H);
+      var LINES = W < 700 ? 16 : 26, STEP = 9;
+      for (var i = 0; i < LINES; i++) {
+        var baseY = (i + .5) * (H / LINES);
+        ctx.beginPath();
+        var peak = 0;
+        for (var x = 0; x <= W; x += STEP) {
+          var d = Math.sin((x * 0.012) + el * 0.55 + i * 0.42) * 1.6;   // ambient drift
+          for (var k = 0; k < ripples.length; k++) {                     // decaying radial waves
+            var rp = ripples[k], age = (now - rp.t) / 1000;
+            if (age > 2.6) continue;
+            var dist = Math.hypot(x - rp.x, baseY - rp.y);
+            var reach = age * 420;
+            var band = Math.abs(dist - reach);
+            if (band < 130) {
+              var decay = Math.exp(-age * 1.5) * Math.exp(-band / 46);
+              d += Math.sin((dist - reach) * 0.09) * rp.amp * decay;
+            }
+          }
+          if (Math.abs(d) > peak) peak = Math.abs(d);
+          x === 0 ? ctx.moveTo(x, baseY + d) : ctx.lineTo(x, baseY + d);
+        }
+        var a = 0.055 + Math.min(peak / 26, 1) * 0.4;
+        ctx.strokeStyle = 'rgba(31,111,79,' + a.toFixed(3) + ')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      requestAnimationFrame(draw);
+    }
+    function start(){ if (!running && visible && !document.hidden) { running = true; requestAnimationFrame(draw); } }
+    function stop(){ running = false; }
+    size();
+    addEventListener('resize', function(){ size(); }, { passive: true });
+    document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(e){ visible = e[0].isIntersecting; visible ? start() : stop(); })
+        .observe(cv);
+    }
+    var lastM = 0;
+    addEventListener('mousemove', function(e){
+      var now = performance.now(); if (now - lastM < 90) return; lastM = now;
+      var r = cv.getBoundingClientRect();
+      if (e.clientY < r.top || e.clientY > r.bottom) return;
+      addRipple(e.clientX - r.left, e.clientY - r.top, 7);
+    }, { passive: true });
+    // the goal being scored throws a big wave
+    window.__waterSplash = function(){
+      var r = cv.getBoundingClientRect(), g = document.getElementById('goal');
+      if (!g) return addRipple(W * .5, H * .5, 26);
+      var gr = g.getBoundingClientRect();
+      addRipple(gr.left - r.left + gr.width / 2, gr.top - r.top + gr.height / 2, 30);
+    };
+    start();
+  })();
+
+  /* ---------- 2. COMPUTED PLOTS (real figures) ---------- */
+  (function(){
+    var GREEN = '#1f6f4f', INK = '#0b0c0c', RULE = '#b9c0b9';
+    function axis(ctx, w, h){
+      ctx.strokeStyle = RULE; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, h - 18.5); ctx.lineTo(w, h - 18.5); ctx.stroke();
+    }
+    function label(ctx, txt, x, y, col){
+      ctx.fillStyle = col || '#6e746e';
+      ctx.font = '10px "JetBrains Mono", ui-monospace, monospace';
+      ctx.fillText(txt, x, y);
+    }
+    var draw = {
+      // Rotman: ~$40K accumulated vs up to $200K executed  (real figures)
+      bars2: function(ctx, w, h, k){
+        axis(ctx, w, h);
+        var data = [{ v: 40, l: '$40K PROFIT' }, { v: 200, l: '$200K EXECUTED' }];
+        var bw = 62, gap = 40, base = h - 19, maxv = 200, top = 16;
+        data.forEach(function(d, i){
+          var hgt = (d.v / maxv) * (base - top) * k;
+          var x = 6 + i * (bw + gap);
+          ctx.fillStyle = i ? 'rgba(31,111,79,.28)' : GREEN;
+          ctx.fillRect(x, base - hgt, bw, hgt);
+          label(ctx, d.l, x, h - 6, i ? '#6e746e' : GREEN);
+        });
+      },
+      // LLM safety: 50 benchmarks, 5,000+ prompts  (real counts)
+      density: function(ctx, w, h, k){
+        axis(ctx, w, h);
+        var n = 50, bw = (w - 12) / n, base = h - 19, top = 14;
+        for (var i = 0; i < n; i++) {
+          if (i / n > k) break;
+          var seedy = (Math.sin(i * 12.9898) * 43758.5453) % 1;
+          var v = 0.35 + Math.abs(seedy) * 0.65;
+          var hgt = v * (base - top);
+          ctx.fillStyle = v > 0.85 ? GREEN : 'rgba(11,12,12,.34)';
+          ctx.fillRect(6 + i * bw, base - hgt, Math.max(bw - 1.6, 1), hgt);
+        }
+        label(ctx, '50 BENCHMARKS', 6, h - 6);
+      },
+      // John Locke: 19,000 (2023) -> 43,000+ (2024)  (real figures)
+      growth: function(ctx, w, h, k){
+        axis(ctx, w, h);
+        var pts = [{ y: 19000, l: '2023 · 19,000' }, { y: 43000, l: '2024 · 43,000+' }];
+        var base = h - 19, top = 16, maxv = 46000;
+        var x0 = 20, x1 = w - 90;
+        var y0 = base - (pts[0].y / maxv) * (base - top);
+        var y1 = base - (pts[1].y / maxv) * (base - top);
+        ctx.strokeStyle = GREEN; ctx.lineWidth = 2; ctx.beginPath();
+        ctx.moveTo(x0, y0); ctx.lineTo(x0 + (x1 - x0) * k, y0 + (y1 - y0) * k); ctx.stroke();
+        ctx.fillStyle = GREEN;
+        ctx.beginPath(); ctx.arc(x0, y0, 3.4, 0, 7); ctx.fill();
+        if (k > .98) { ctx.beginPath(); ctx.arc(x1, y1, 3.4, 0, 7); ctx.fill(); }
+        label(ctx, pts[0].l, 6, base + 13);
+        if (k > .9) label(ctx, pts[1].l, x1 - 30, y1 - 9, GREEN);
+      },
+      // arbbot: shape of a cross-venue spread — schematic, labelled as such
+      spread: function(ctx, w, h, k){
+        axis(ctx, w, h);
+        var base = h - 19, mid = (base + 14) / 2;
+        ctx.strokeStyle = 'rgba(11,12,12,.28)'; ctx.lineWidth = 1.2; ctx.beginPath();
+        for (var x = 0; x <= w * k; x += 4) {
+          var y = mid + Math.sin(x * 0.05) * 12 + Math.sin(x * 0.017) * 7;
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.strokeStyle = GREEN; ctx.lineWidth = 2; ctx.beginPath();
+        for (var x2 = 0; x2 <= w * k; x2 += 4) {
+          var y2 = mid + Math.sin(x2 * 0.05 + 1.1) * 12 + Math.sin(x2 * 0.017) * 7;
+          x2 === 0 ? ctx.moveTo(x2, y2) : ctx.lineTo(x2, y2);
+        }
+        ctx.stroke();
+        label(ctx, 'VENUE A / VENUE B', 6, h - 6);
+      }
+    };
+    function render(cv){
+      var kind = cv.getAttribute('data-plot'), fn = draw[kind];
+      if (!fn) return;
+      var dpr = Math.min(devicePixelRatio || 1, 2);
+      var r = cv.getBoundingClientRect(), w = r.width || 560, h = 92;
+      cv.width = w * dpr; cv.height = h * dpr;
+      var ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (REDUCE) { fn(ctx, w, h, 1); return; }
+      var t = performance.now();
+      (function step(now){
+        var k = Math.min((now - t) / 900, 1);
+        var e = 1 - Math.pow(1 - k, 3);
+        ctx.clearRect(0, 0, w, h); fn(ctx, w, h, e);
+        if (k < 1) requestAnimationFrame(step);
+      })(t);
+    }
+    document.querySelectorAll('.work-item').forEach(function(item){
+      item.addEventListener('toggle', function(){
+        if (item.open) item.querySelectorAll('canvas[data-plot]').forEach(render);
+      });
+    });
+    // the row that starts open
+    document.querySelectorAll('.work-item[open] canvas[data-plot]').forEach(function(c){ setTimeout(function(){ render(c); }, 400); });
+    addEventListener('resize', function(){
+      document.querySelectorAll('.work-item[open] canvas[data-plot]').forEach(render);
+    }, { passive: true });
+  })();
+
+  /* ---------- 3. CINEMATIC: View Transitions on work rows ---------- */
+  (function(){
+    if (REDUCE || !document.startViewTransition) return;
+    document.querySelectorAll('.work-item').forEach(function(item){
+      var sum = item.querySelector('summary');
+      if (!sum) return;
+      sum.addEventListener('click', function(ev){
+        ev.preventDefault();
+        item.style.viewTransitionName = 'workrow';
+        var t = document.startViewTransition(function(){ item.open = !item.open; });
+        t.finished.finally(function(){ item.style.viewTransitionName = ''; });
+      });
+    });
+  })();
 })();
 </script>
 </body></html>
