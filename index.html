@@ -2,7 +2,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script>document.documentElement.classList.add('js');</script>
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},3000);}}catch(e){}})();</script>
 <title>Isaac Jung — Data Science &amp; Machine Learning</title>
 <meta content="Isaac Jung — Statistics &amp; Machine Learning student at Carnegie Mellon. Data science, LLM-safety research, and quantitative/algorithmic trading. Turning messy data into honest, quantitative insight." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -33,6 +33,18 @@
         .nav-link[data-active="true"] { color: #0b0c0c; }
         .nav-link[data-active="true"] .nav-underline { transform: scaleX(1); }
         .nav-underline { display:block; height:1px; background:#0b0c0c; transform: scaleX(0); transform-origin:left; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+        /* Data-loading intro — shown on first visit only (JS-gated via .preload), never on reduced-motion */
+        #preloader { display: none; }
+        .preload #preloader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: #fbf9f5; }
+        #preloader.pl-done { opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+        .pl-mark { font-family: 'EB Garamond', serif; font-size: 44px; color: #0b0c0c; line-height: 1; }
+        .pl-bars { display: flex; align-items: flex-end; gap: 5px; height: 76px; }
+        .pl-bars i { width: 7px; background: #0b0c0c; height: 10px; animation: plbar 1s ease-in-out infinite; }
+        .pl-bars i:nth-child(1){animation-delay:0s} .pl-bars i:nth-child(2){animation-delay:.07s} .pl-bars i:nth-child(3){animation-delay:.14s} .pl-bars i:nth-child(4){animation-delay:.21s} .pl-bars i:nth-child(5){animation-delay:.28s} .pl-bars i:nth-child(6){animation-delay:.35s} .pl-bars i:nth-child(7){animation-delay:.42s} .pl-bars i:nth-child(8){animation-delay:.49s} .pl-bars i:nth-child(9){animation-delay:.42s} .pl-bars i:nth-child(10){animation-delay:.35s} .pl-bars i:nth-child(11){animation-delay:.28s} .pl-bars i:nth-child(12){animation-delay:.21s} .pl-bars i:nth-child(13){animation-delay:.14s} .pl-bars i:nth-child(14){animation-delay:.07s}
+        @keyframes plbar { 0%,100% { height: 10px } 50% { height: 68px } }
+        .pl-readout { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #444748; }
+        .pl-readout b { font-weight: 400; color: #0b0c0c; }
+        @media (prefers-reduced-motion: reduce) { .preload #preloader { display: none; } }
     </style>
 <style id="ux-enhance">
         a, button { outline-offset: 3px; }
@@ -59,6 +71,12 @@
 <body class="bg-background text-primary font-body-md min-h-screen relative overflow-x-hidden antialiased">
 <a class="skip-link" href="#about">Skip to content</a>
 <div class="paper-grain"></div>
+<!-- Data-loading intro -->
+<div id="preloader" aria-hidden="true">
+<div class="pl-mark">IJ</div>
+<div class="pl-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="pl-readout"><span id="pl-status">LOADING DATA</span> — <b id="pl-pct">0%</b></div>
+</div>
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant">
 <a class="font-headline-md text-headline-md font-normal text-primary" href="#top">ISAAC JUNG</a>
@@ -89,7 +107,7 @@
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
 <div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant">00 / INDEX</div>
 <h1 class="font-display text-headline-lg-mobile md:text-display text-primary mb-6 max-w-2xl leading-tight">
-                    Data Science × Machine&nbsp;Learning × Markets
+                    Data × Product × Decisions
                 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed mb-8">
                     Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and trading systems — turning messy, unstructured data into honest, quantitative insight.
@@ -382,6 +400,25 @@
 <span aria-hidden="true" class="material-symbols-outlined">arrow_upward</span>
 </button>
 <script>
+(function(){
+  // Data-loading intro: runs only when .preload is set (first visit, motion-ok). Always self-dismisses.
+  var d = document.documentElement, pl = document.getElementById('preloader');
+  if (!pl || !d.classList.contains('preload')) return;
+  d.style.overflow = 'hidden';
+  var pct = document.getElementById('pl-pct'), st = document.getElementById('pl-status'), v = 0, done = false;
+  function finish(){ if (done) return; done = true; clearInterval(iv);
+    if (st) st.textContent = 'READY'; if (pct) pct.textContent = '100%';
+    pl.classList.add('pl-done'); d.style.overflow = '';
+    try { sessionStorage.setItem('plSeen', '1'); } catch(e) {}
+    setTimeout(function(){ pl.style.display = 'none'; }, 550);
+  }
+  var iv = setInterval(function(){
+    v = Math.min(100, v + Math.random() * 15 + 5);
+    if (pct) pct.textContent = Math.round(v) + '%';
+    if (v >= 100) { clearInterval(iv); setTimeout(finish, 260); }
+  }, 130);
+  setTimeout(finish, 2600); // hard safety: never stuck
+})();
 (function(){
   // Scroll-driven reveal (progressive enhancement). Content is visible by default (.js gate);
   // any element in or above the viewport is revealed, so jumps/deep-links can never leave it hidden.
