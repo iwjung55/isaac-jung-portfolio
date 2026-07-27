@@ -35,7 +35,7 @@
         .nav-underline { display:block; height:1px; background:#1f6f4f; transform: scaleX(0); transform-origin:left; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
         /* Data-loading intro — shown on first visit only (JS-gated via .preload), never on reduced-motion */
         #preloader { display: none; }
-        .preload #preloader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: #f4f5f4; }
+        .preload #preloader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: #e9ebe9; }
         #preloader.pl-done { opacity: 0; pointer-events: none; transition: opacity .5s ease; }
         .pl-mark { font-family: 'Bricolage Grotesque', sans-serif; font-size: 44px; color: #0b0c0c; line-height: 1; }
         .pl-bars { display: flex; align-items: flex-end; gap: 5px; height: 76px; }
@@ -58,9 +58,9 @@
         /* Work — vertical stacked, expandable index */
         .work-summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 20px; padding: 30px 8px; transition: background .3s ease; }
         .work-summary::-webkit-details-marker { display: none; }
-        .work-item:hover .work-summary { background: #eef0ee; }
+        .work-item:hover .work-summary { background: #e2e5e2; }
         .work-index { flex: none; width: 2.5ch; }
-        .work-tile { flex: none; width: 52px; height: 52px; border: 1px solid #c9cec9; display: flex; align-items: center; justify-content: center; color: #444748; transition: border-color .3s, color .3s; }
+        .work-tile { flex: none; width: 52px; height: 52px; border: 1px solid #b9c0b9; display: flex; align-items: center; justify-content: center; color: #444748; transition: border-color .3s, color .3s; }
         .work-item:hover .work-tile, .work-item[open] .work-tile { border-color: #0b0c0c; color: #0b0c0c; }
         .work-head { flex: 1 1 auto; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
         .work-title { line-height: 1.15; transition: color .3s; }
@@ -100,22 +100,23 @@
         .goal { position: absolute; right: -152px; top: 50%; margin-top: -38px; width: 98px; height: 76px;
                 pointer-events: none; z-index: 2; }
         .goal svg { display: block; width: 100%; height: 100%; }
+        .goal, .pball, .drop, .wake { backface-visibility: hidden; }
         .pball { position: absolute; right: -128px; top: 50%; margin-top: -31px; width: 62px; height: 62px;
                  pointer-events: none; z-index: 3; will-change: transform;
                  transition: transform .25s cubic-bezier(.2,.8,.2,1); }
         .pball svg { display: block; width: 100%; height: 100%; }
         /* choreography */
-        .shotline.shot .goal { animation: goalIn .45s ease-out both, netHit .45s ease-out 1.3s; }
-        .shotline.shot .pball { animation: ballShot .95s cubic-bezier(.33,.5,.4,1) .4s both; transition: none; }
+        .shotline.shot .goal { animation: goalIn .55s cubic-bezier(.22,.85,.3,1) both, netHit .5s cubic-bezier(.3,.7,.4,1) 1.34s; }
+        .shotline.shot .pball { animation: ballShot 1.08s cubic-bezier(.15,.72,.32,1) .42s both; transition: none; }
         .shotline.shot .wake { animation: wake 1s ease-out .4s both; }
-        .shotline.shot .drop { animation: splash .7s ease-out 1.3s both; }
-        .shotline.shot .hero-name { animation: nameReveal .7s cubic-bezier(.2,.8,.25,1) 1.42s both; }
+        .shotline.shot .drop { animation: splash .78s cubic-bezier(.2,.7,.3,1) 1.34s both; }
+        .shotline.shot .hero-name { animation: nameReveal .85s cubic-bezier(.16,.84,.28,1) 1.46s both; }
         @keyframes goalIn { from { opacity: 0; transform: translateX(16px) scale(.94); } to { opacity: 1; transform: none; } }
         @keyframes netHit { 0% { transform: none; } 35% { transform: translateX(7px) scaleX(1.05); } 100% { transform: none; } }
         @keyframes ballShot {
             0%   { transform: translateX(var(--travel, -900px)) rotate(0deg); opacity: 0; }
             8%   { opacity: 1; }
-            88%  { transform: translateX(6px) rotate(940deg); opacity: 1; }
+            86%  { transform: translateX(7px) rotate(930deg); opacity: 1; }
             100% { transform: translateX(0) rotate(980deg); opacity: 1; }
         }
         .wake { position: absolute; left: 0; right: -120px; top: 50%; height: 2px; opacity: 0; transform-origin: left;
@@ -128,20 +129,15 @@
             60%  { opacity: .75; }
             100% { opacity: 0; transform: translate(var(--tx,0), var(--ty,0)) scale(.85); }
         }
-        @keyframes nameReveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        @keyframes nameReveal { from { opacity: 0; transform: translateY(16px) scale(.99); } to { opacity: 1; transform: none; } }
         .tagline em { font-style: normal; color: #1f6f4f; }
         /* Signal green on hover, applied across the whole page */
         a:hover, button:hover, summary:hover,
         .work-summary:hover .work-title, .work-summary:hover .work-tags, .work-summary:hover .work-index,
-        .work-bullets li:hover, h2:hover, h3:hover, .tagline:hover, dt:hover, dd:hover {
+        h2:hover, h3:hover, .tagline:hover, dt:hover, dd:hover {
             color: #1f6f4f;
         }
-        a, button, summary, h2, h3, .tagline, .work-bullets li { transition: color .25s ease; }
-        .work-bullets li { padding-left: 20px; position: relative; margin-bottom: 10px;
-            font-family: Archivo, sans-serif; font-size: 16px; line-height: 1.65; color: #444748; }
-        .work-bullets li::before { content: ""; position: absolute; left: 4px; top: 10px;
-            width: 5px; height: 5px; background: #6e746e; border-radius: 50%; }
-        .work-bullets li:hover::before { background: #1f6f4f; }
+        a, button, summary, h2, h3, .tagline { transition: color .25s ease; }
         /* Dog sits under the portrait */
         .dog { position: static; width: 62px; margin: 46px 0 0 auto; opacity: 0; transform: translateX(-24px);
                transition: opacity .5s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
@@ -206,7 +202,7 @@
 </head>
 <!--
 THESIS: A quantitative builder's index. Refuses the warm-ivory + display-serif + tracked-mono arrangement this category defaults to.
-OWN-WORLD: Cool instrument neutrals (#f4f5f4 ground, graphite ink) with one signal green (#1f6f4f) carrying progress, active state and live rows. Bricolage Grotesque display, Archivo text, JetBrains Mono for every data/notation register. 0px corners, 1px rules, plotted dot-grid ground.
+OWN-WORLD: Cool instrument neutrals (#e9ebe9 ground, graphite ink) with one signal green (#1f6f4f) carrying progress, active state and live rows. Bricolage Grotesque display, Archivo text, JetBrains Mono for every data/notation register. 0px corners, 1px rules, plotted dot-grid ground.
 STORY: Visitor reads a builder who ships quantitative systems, scans the stacked work index, expands what interests them, copies the email.
 FIRST VIEWPORT: Oversized tight-tracked headline left, monospace metadata block beneath it, portrait plate right, three actions on one baseline over chart-paper ground.
 FORM: Vertical expandable index — an extension of the established single-page world, not a replacement.
@@ -283,6 +279,10 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </a>
 <a class="inline-flex items-center gap-2 font-mono text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors" href="resume.pdf" target="_blank" rel="noopener">
                         Résumé
+                        <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span>
+</a>
+<a class="inline-flex items-center gap-2 font-mono text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1 transition-colors" href="https://www.linkedin.com/in/isaacwjung" target="_blank" rel="noopener">
+                        LinkedIn
                         <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span>
 </a>
 <button type="button" class="copy-email inline-flex items-center gap-2 font-mono text-label-caps uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" data-email="isaacjung0702@gmail.com">
@@ -412,9 +412,21 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PRINCETON · 2024</span></div>
 </div>
 </details>
-<ul class="work-bullets border-t border-outline-variant pt-6 mt-2">
-<li><span class="font-body-md text-body-md text-primary">John Locke Essay Competition</span> — two-time finalist (Oxford), ~19,000 entries in 2023 and 43,000+ in 2024.</li>
-</ul>
+<details class="work-item group border-t border-outline-variant">
+<summary class="work-summary">
+<span class="work-index font-mono text-label-caps text-outline">05</span>
+<span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">article</span></span>
+<span class="work-head">
+<span class="work-title font-headline-md text-headline-md text-primary">John Locke Essay Competition</span>
+<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">ECONOMICS · 2× FINALIST</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
+</summary>
+<div class="work-body">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Two-time finalist (Oxford, UK) in a global essay competition drawing ~19,000 entries in 2023 and over 43,000 in 2024. Essays analyzed economic, demographic, and historical trends, including the causes and consequences of global population decline.</p>
+<div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">OXFORD · 2023–2024</span></div>
+</div>
+</details>
 </div>
 </section>
 <!-- ============ 03 / EXPERIENCE ============ -->
