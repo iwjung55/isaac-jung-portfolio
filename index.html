@@ -94,7 +94,7 @@
         /* Water polo: goal waits on the right, ball fires from the left, scores,
            splashes — and ONLY THEN does the name appear. Name rests visible;
            JS arms the hidden state only when it is about to animate. */
-        .shotline { position: relative; display: inline-block; max-width: 100%; }
+        .shotline { position: relative; display: inline-block; align-self: flex-start; max-width: 100%; }
         .shotline.armed .hero-name { opacity: 0; }
         .shotline.armed .goal, .shotline.armed .pball { opacity: 0; }
         .goal { position: absolute; right: -152px; top: 50%; margin-top: -38px; width: 98px; height: 76px;
