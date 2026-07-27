@@ -1,27 +1,27 @@
 ---
-name: Paper & Grid Portfolio
+name: Instrument Index Portfolio
 colors:
-  surface: '#fbf9f5'
-  surface-dim: '#dbdad6'
-  surface-bright: '#fbf9f5'
+  surface: '#f4f5f4'
+  surface-dim: '#d6dad6'
+  surface-bright: '#f8f9f8'
   surface-container-lowest: '#ffffff'
-  surface-container-low: '#f5f3ef'
-  surface-container: '#efeeea'
-  surface-container-high: '#eae8e4'
-  surface-container-highest: '#e4e2de'
+  surface-container-low: '#eef0ee'
+  surface-container: '#e9ebe9'
+  surface-container-high: '#e4e7e4'
+  surface-container-highest: '#dde1dd'
   on-surface: '#1b1c1a'
   on-surface-variant: '#444748'
   inverse-surface: '#30312e'
   inverse-on-surface: '#f2f0ec'
-  outline: '#747878'
-  outline-variant: '#c4c7c7'
+  outline: '#6e746e'
+  outline-variant: '#c9cec9'
   surface-tint: '#5f5e5e'
   primary: '#0b0c0c'
   on-primary: '#ffffff'
   primary-container: '#222222'
   on-primary-container: '#8a8989'
   inverse-primary: '#c8c6c5'
-  secondary: '#526255'
+  secondary: '#1f6f4f'
   on-secondary: '#ffffff'
   secondary-container: '#d2e4d4'
   on-secondary-container: '#566759'
@@ -45,49 +45,49 @@ colors:
   tertiary-fixed-dim: '#bccabd'
   on-tertiary-fixed: '#121e16'
   on-tertiary-fixed-variant: '#3d4a40'
-  background: '#fbf9f5'
+  background: '#f4f5f4'
   on-background: '#1b1c1a'
-  surface-variant: '#e4e2de'
+  surface-variant: '#dde1dd'
 typography:
   display:
-    fontFamily: EB Garamond
+    fontFamily: Bricolage Grotesque
     fontSize: 64px
     fontWeight: '400'
     lineHeight: '1.1'
     letterSpacing: -0.02em
   headline-lg:
-    fontFamily: EB Garamond
+    fontFamily: Bricolage Grotesque
     fontSize: 40px
     fontWeight: '400'
     lineHeight: '1.2'
   headline-lg-mobile:
-    fontFamily: EB Garamond
+    fontFamily: Bricolage Grotesque
     fontSize: 32px
     fontWeight: '400'
     lineHeight: '1.2'
   headline-md:
-    fontFamily: EB Garamond
+    fontFamily: Bricolage Grotesque
     fontSize: 28px
     fontWeight: '400'
     lineHeight: '1.3'
   body-lg:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Archivo
     fontSize: 18px
     fontWeight: '400'
     lineHeight: '1.6'
   body-md:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Archivo
     fontSize: 16px
     fontWeight: '400'
     lineHeight: '1.6'
   label-caps:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: JetBrains Mono
     fontSize: 12px
     fontWeight: '600'
     lineHeight: '1.0'
     letterSpacing: 0.1em
   caption:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Archivo
     fontSize: 13px
     fontWeight: '400'
     lineHeight: '1.4'
@@ -101,25 +101,25 @@ spacing:
 ---
 
 ## Brand & Style
-The design system is rooted in the philosophy of Japanese editorial minimalism, emphasizing intentionality, quietude, and the tactile quality of physical paper. It is designed for a premium personal portfolio that values content over decoration.
+The design system is an **instrument index**: the visual language of statistical graphics, lab notation, and engineering drawing, applied to a quantitative builder's portfolio. It deliberately refuses the warm-cream ground, display-serif headline, and tracked-mono label arrangement that this category (and most generated portfolio UI) defaults to.
 
-The aesthetic blends **Modern Minimalism** with **Tactile/Skeuomorphic** nuances. It avoids digital "perfection" in favor of organic warmth, utilizing subtle textures and a layout reminiscent of high-end independent magazines like *Kinfolk*. The emotional response should be one of calm, professional authority, and timelessness.
+The aesthetic is **precise, contemporary, and technical** — confident grotesk display, cool neutral grounds, plotted dot-grid texture, and a single signal green that carries live state. The emotional response should be competence and clarity, not literary calm.
 
 ## Colors
-The palette is inspired by natural materials: rice paper, charcoal, and botanical greens.
+The palette reads as instrument neutrals plus one signal.
 
-- **Background (Ivory/Rice Paper):** Use `#F8F6F2` as the base for all primary surfaces to create a warm, organic feel compared to pure white.
-- **Text (Charcoal):** Use `#222222` for all primary communication to ensure high contrast while remaining softer than pure black.
-- **Accents (Sage & Forest):** Muted Sage (`#6B7C6E`) is used for subtle highlights or active states. Deep Forest (`#3E4B41`) is reserved for grounding elements or secondary buttons.
-- **Functional Neutrals:** Soft Gray and Warm Beige are used for dividers, borders, and secondary backgrounds to maintain the "paper-on-paper" layered effect.
+- **Ground (Cool Neutral):** `#f4f5f4` — a faintly green-grey white. Cooler and more precise than the warm ivory it replaced.
+- **Ink (Graphite):** `#0b0c0c` for primary type; `#444748` for secondary text.
+- **Signal (Deep Green):** `#1f6f4f` is the one accent and it must do real work — scroll progress, active navigation, live/hover state on work rows, and the availability marker. It is never decorative.
+- **Panels & Rules:** layered cool greys (`#eef0ee` → `#dde1dd`) with `#c9cec9` 1px rules for the drawn, drafted feel.
 
 ## Typography
-The typography system relies on a high-contrast pairing between a graceful, classical serif and a contemporary, approachable sans-serif.
+A three-register grotesk system, chosen against the training-data defaults (EB Garamond, Plus Jakarta Sans, IBM Plex, Space Grotesk and friends are deliberately not used).
 
-- **Headlines:** `EB Garamond` provides an authoritative, literary feel. Use it for all major headings and display text. It should feel airy and expansive.
-- **Body Copy:** `Plus Jakarta Sans` offers exceptional legibility. Its slightly rounded forms prevent the design from feeling too sterile or rigid.
-- **Editorial Details:** Use `label-caps` for section numbering (e.g., 01, 02), margin notes, and metadata labels. This creates the "editorial" aesthetic.
-- **Hierarchy:** Ensure generous vertical rhythm. Headings should have significant whitespace above them to signal the start of new "chapters."
+- **Display — `Bricolage Grotesque` (700):** oversized and tightly tracked (-0.045em at 82px). Carries all headlines. It has enough character to be recognizable without ornament.
+- **Text — `Archivo` (400/500):** a sturdy, quiet workhorse for body copy at 16–18px / 1.65.
+- **Data & Notation — `JetBrains Mono` (400/500):** every metadata pair, section number, tag, date, and button label. Monospace is the *data register* here, not a costume — it marks anything that behaves like a value.
+- **Hierarchy:** size and weight do the work; generous space above headings signals new chapters.
 
 ## Layout & Spacing
 This design system utilizes a **Fixed Grid** model for desktop, transitioning to a fluid container for mobile. 
@@ -134,7 +134,7 @@ Depth in this design system is achieved through physical metaphors rather than d
 
 - **Tonal Layering:** Use slightly darker beige or gray backgrounds to indicate container depth.
 - **Subtle Texture:** Apply a very fine, low-opacity paper grain SVG overlay to the entire UI to reduce "digital flatness."
-- **Soft Shadows:** If shadows are necessary for cards, use "Ambient Shadows"—extremely low opacity (`0.03 - 0.05`), very large blur radius, and a tint of the secondary green or charcoal.
+- **Soft Shadows:** If shadows are necessary for cards, use "Ambient Shadows"—extremely low opacity (`0.03 - 0.05`), very large blur radius, and a tint of the signal green or graphite.
 - **Outlines:** Prefer 1px borders over shadows for most components to maintain the "Editorial/Drafting" aesthetic.
 
 ## Shapes
@@ -143,9 +143,9 @@ The shape language is **Sharp (0)**.
 To maintain the architectural and editorial feel of a printed page, use 0px border-radii for all primary containers, buttons, and images. This reinforces the grid and creates a sense of precision. Circular elements should only be used for specific functional items like "Play" buttons or "Scroll to Top" indicators to provide a singular point of visual contrast.
 
 ## Components
-- **Buttons:** Rectangular, no radius. Primary buttons use a charcoal fill with ivory text. Secondary buttons use a 1px charcoal border with a transparent background. Hover states should involve a subtle shift to Sage Green or a slight background tint change.
-- **Cards:** Defined by 1px borders or simple whitespace. Images within cards should have no rounding. Titles for cards should use the Serif typeface.
+- **Buttons:** Rectangular, no radius. Primary buttons use a charcoal fill with ivory text. Secondary buttons use a 1px charcoal border with a transparent background. Hover states shift to the signal green or fill with graphite or a slight background tint change.
+- **Cards:** Defined by 1px borders or simple whitespace. Images within cards should have no rounding. Titles for cards use the display grotesk.
 - **Input Fields:** Bottom-border only (underlined style) to mimic a physical form. Labels should be small, all-caps, positioned above the field.
 - **Chips/Labels:** Small, rectangular boxes with 1px borders. Use for tags or categories.
-- **Section Numbers:** Use small `label-caps` serif numbers (e.g., *01/*) placed in the left margin or above section titles to reinforce the editorial structure.
-- **Dividers:** Horizontal or vertical 1px lines (`#D1D1D1`). Never use heavy shadows to separate content.
+- **Section Numbers:** Use small monospace `label-caps` numbers (e.g., *01/*) placed in the left margin or above section titles to reinforce the editorial structure.
+- **Dividers:** Horizontal or vertical 1px lines (`#c9cec9`). Never use heavy shadows to separate content.
