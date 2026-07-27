@@ -4,7 +4,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},3000);}}catch(e){}})();</script>
 <title>Isaac Jung — Data Science &amp; Machine Learning</title>
-<meta content="Isaac Jung — Statistics &amp; Machine Learning student at Carnegie Mellon. Data science, LLM-safety research, and quantitative/algorithmic trading. Turning messy data into honest, quantitative insight." name="description"/>
+<meta content="Isaac Jung — Statistics &amp; Machine Learning at Carnegie Mellon. Data science, LLM-safety research, and algorithmic trading." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <meta content="Isaac Jung — Data Science &amp; Machine Learning" property="og:title"/>
 <meta content="Statistics &amp; ML @ Carnegie Mellon — data science, LLM-safety research, and quantitative trading." property="og:description"/>
@@ -67,14 +67,24 @@
         .work-item:hover .work-title, .work-item[open] .work-title { color: #1f6f4f; }
         .work-chevron { flex: none; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
         .work-item[open] .work-chevron { transform: rotate(180deg); }
-        .work-body { padding: 4px 8px 34px 84px; }
-        .work-item[open] .work-body { animation: workReveal .45s cubic-bezier(.2,.8,.2,1) both; }
-        @keyframes workReveal { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        .work-body { padding: 4px 8px 34px 84px; transform-origin: top center; }
+        .work-item[open] .work-body { animation: workFold .5s cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes workFold { from { opacity: 0; transform: perspective(900px) rotateX(-14deg) translateY(-6px); } to { opacity: 1; transform: none; } }
         .work-actions { display: flex; align-items: center; gap: 28px; margin-top: 22px; flex-wrap: wrap; }
         .btn-ghost { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #0b0c0c; border-bottom: 1px solid #0b0c0c; padding-bottom: 3px; transition: color .2s, border-color .2s, gap .2s; }
         .btn-ghost:hover { color: #1f6f4f; border-color: #1f6f4f; gap: 11px; }
         .work-minor { display: flex; align-items: baseline; gap: 20px; padding: 22px 8px; }
         @media (max-width: 767px) { .work-tile { display: none; } .work-body { padding-left: 8px; } .work-summary { gap: 14px; padding: 22px 4px; } }
+        /* Wordmark — folds open on arrival, waves on hover */
+        .wordmark { display: inline-flex; perspective: 620px; }
+        .wordmark span { display: inline-block; transform-origin: 50% 100%; backface-visibility: hidden;
+            transition: opacity .45s ease, transform .55s cubic-bezier(.2,.8,.25,1), color .3s ease;
+            transition-delay: calc(var(--i) * 42ms); }
+        .js .wordmark span { opacity: 0; transform: rotateX(-92deg); }
+        .js .wordmark.wm-in span { opacity: 1; transform: none; }
+        .wordmark.wm-in:hover span { transform: rotateX(-24deg) translateY(-2px); color: #1f6f4f;
+            transition-delay: calc(var(--i) * 26ms); }
+        @media (prefers-reduced-motion: reduce) { .js .wordmark span { opacity: 1 !important; transform: none !important; } }
         /* Premium button: fill on hover */
         .btn-fill { transition: background .3s ease, color .3s ease, gap .2s ease; }
         .btn-fill:hover { background: #0b0c0c; color: #fff; }
@@ -122,7 +132,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant">
-<a class="font-headline-md text-headline-md font-normal text-primary" href="#top">ISAAC JUNG</a>
+<a aria-label="Isaac Jung — home" class="wordmark font-headline-md text-headline-md font-normal text-primary" href="#top"><span aria-hidden="true" style="--i:0">I</span><span aria-hidden="true" style="--i:1">S</span><span aria-hidden="true" style="--i:2">A</span><span aria-hidden="true" style="--i:3">A</span><span aria-hidden="true" style="--i:4">C</span><span aria-hidden="true" style="--i:5">&nbsp;</span><span aria-hidden="true" style="--i:6">J</span><span aria-hidden="true" style="--i:7">U</span><span aria-hidden="true" style="--i:8">N</span><span aria-hidden="true" style="--i:9">G</span></a>
 <nav class="hidden md:flex gap-8 items-center font-mono text-label-caps uppercase tracking-widest">
 <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" data-nav="about" href="#about">About<span class="nav-underline"></span></a>
 <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" data-nav="work" href="#work">Work<span class="nav-underline"></span></a>
@@ -153,7 +163,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
                     Data × Models × Products
                 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed mb-8">
-                    Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and trading systems — turning messy, unstructured data into honest, quantitative insight.
+                    Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and trading systems.
                 </p>
 <!-- technical metadata block -->
 <dl class="font-mono text-caption text-on-surface-variant grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 mb-10 max-w-md">
@@ -197,22 +207,12 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span>
-<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Rigor with data, in service of a human question.</h2>
+<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Statistics, ML, and a trading bot.</h2>
 </div>
 <div class="md:col-span-7 md:col-start-6 reveal" style="transition-delay:120ms;">
 <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
-<p>I'm Isaac Jung, a Statistics &amp; Machine Learning student at Carnegie Mellon University. My work sits where rigorous quantitative analysis meets real decisions — from evaluating the safety of large language models to building predictive models, data pipelines, and algorithmic trading systems.</p>
-<p>I care about clarity: turning messy, unstructured data into something honest and legible. Beyond statistics I'm drawn to economics, philosophy, and public policy, and I play the cello. Whether it's arbitrage strategy or combinatory logic, I'm most engaged where analytical precision meets a genuinely human question.</p>
-</div>
-<div class="mt-10">
-<span class="font-mono text-label-caps tracking-widest text-outline block mb-4">STACK</span>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">Python</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">R</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">Pandas / NumPy</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">Machine Learning</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">Data Viz</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">Statistics</span>
+<p>I'm a Statistics &amp; Machine Learning student at Carnegie Mellon. I've stress-tested LLM safety benchmarks, built predictive models on product and nonprofit data, and placed 2nd in arbitrage at the Rotman trading competition.</p>
+<p>Outside that: economics, philosophy, cello, poker.</p>
 </div>
 </div>
 </div>
@@ -392,7 +392,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="md:col-span-4 reveal">
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">04 / CONTACT</span>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Let's talk.</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-xs leading-relaxed">Open to research, data, and internship opportunities — and always happy to talk statistics, markets, or policy.</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-xs leading-relaxed">Open to internships and research. Happy to talk data, markets, or policy.</p>
 </div>
 <div class="md:col-span-7 md:col-start-6 flex flex-col justify-center gap-8 mt-12 md:mt-0 reveal" style="transition-delay:120ms;">
 <a class="group flex items-baseline justify-between gap-4 border-b border-outline-variant pb-4 hover:border-primary transition-colors" href="mailto:isaacjung0702@gmail.com">
@@ -487,6 +487,15 @@ FORM: Vertical expandable index — an extension of the established single-page 
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(function(s){ spy.observe(s); });
+  }
+})();
+(function(){
+  // Wordmark: fold open on arrival
+  var wm = document.querySelector('.wordmark');
+  if (wm) {
+    var open = function(){ wm.classList.add('wm-in'); };
+    if (document.documentElement.classList.contains('preload')) { setTimeout(open, 1500); }
+    else { requestAnimationFrame(function(){ setTimeout(open, 90); }); }
   }
 })();
 (function(){
