@@ -77,14 +77,18 @@
         @media (max-width: 767px) { .work-tile { display: none; } .work-body { padding-left: 8px; } .work-summary { gap: 14px; padding: 22px 4px; } }
         /* Wordmark — folds open on arrival, waves on hover */
         .wordmark { display: inline-flex; perspective: 620px; }
+        /* Letters rest VISIBLE. JS adds .wm-fold for one beat to fold them shut, then releases —
+           so a hidden tab, a JS failure, or no JS at all can never hide the name. */
         .wordmark span { display: inline-block; transform-origin: 50% 100%; backface-visibility: hidden;
             transition: opacity .45s ease, transform .55s cubic-bezier(.2,.8,.25,1), color .3s ease;
             transition-delay: calc(var(--i) * 42ms); }
-        .js .wordmark span { opacity: 0; transform: rotateX(-92deg); }
-        .js .wordmark.wm-in span { opacity: 1; transform: none; }
-        .wordmark.wm-in:hover span { transform: rotateX(-24deg) translateY(-2px); color: #1f6f4f;
+        .wordmark.wm-fold span { opacity: 0; transform: rotateX(-92deg); transition: none; }
+        .wordmark:hover span { transform: rotateX(-24deg) translateY(-2px); color: #1f6f4f;
             transition-delay: calc(var(--i) * 26ms); }
-        @media (prefers-reduced-motion: reduce) { .js .wordmark span { opacity: 1 !important; transform: none !important; } }
+        @media (prefers-reduced-motion: reduce) {
+            .wordmark.wm-fold span { opacity: 1 !important; transform: none !important; }
+            .wordmark:hover span { transform: none !important; }
+        }
         /* Premium button: fill on hover */
         .btn-fill { transition: background .3s ease, color .3s ease, gap .2s ease; }
         .btn-fill:hover { background: #0b0c0c; color: #fff; }
@@ -490,12 +494,15 @@ FORM: Vertical expandable index — an extension of the established single-page 
   }
 })();
 (function(){
-  // Wordmark: fold open on arrival
+  // Wordmark: fold shut for a beat, then let it unfold. setTimeout (unlike rAF) still
+  // fires in a hidden tab, and every path ends with the letters visible.
   var wm = document.querySelector('.wordmark');
   if (wm) {
-    var open = function(){ wm.classList.add('wm-in'); };
-    if (document.documentElement.classList.contains('preload')) { setTimeout(open, 1500); }
-    else { requestAnimationFrame(function(){ setTimeout(open, 90); }); }
+    wm.classList.add('wm-fold');
+    var unfold = function(){ wm.classList.remove('wm-fold'); };
+    setTimeout(unfold, document.documentElement.classList.contains('preload') ? 1500 : 140);
+    setTimeout(unfold, 3200);
+    window.addEventListener('load', function(){ setTimeout(unfold, 200); });
   }
 })();
 (function(){
