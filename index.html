@@ -817,6 +817,9 @@ FORM: Vertical expandable index — an extension of the established single-page 
     function stop(){ running = false; }
     size();
     addEventListener('resize', function(){ size(); }, { passive: true });
+    // Self-healing: if the canvas is laid out at zero width (collapsed pane, hidden
+    // container, late fonts), re-size the moment it gains a real box.
+    if ('ResizeObserver' in window) new ResizeObserver(function(){ size(); }).observe(cv);
     document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function(e){ visible = e[0].isIntersecting; visible ? start() : stop(); })
@@ -940,6 +943,12 @@ FORM: Vertical expandable index — an extension of the established single-page 
     addEventListener('resize', function(){
       document.querySelectorAll('.work-item[open] canvas[data-plot]').forEach(render);
     }, { passive: true });
+    if ('ResizeObserver' in window) {
+      var ro2 = new ResizeObserver(function(en){
+        en.forEach(function(e){ if (e.contentRect.width > 0 && e.target.closest('details[open]')) render(e.target); });
+      });
+      document.querySelectorAll('canvas[data-plot]').forEach(function(c){ ro2.observe(c); });
+    }
   })();
 
   /* ---------- 3. CINEMATIC: View Transitions on work rows ---------- */
