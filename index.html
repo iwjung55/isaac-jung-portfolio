@@ -89,6 +89,36 @@
             .wordmark.wm-fold span { opacity: 1 !important; transform: none !important; }
             .wordmark:hover span { transform: none !important; }
         }
+        /* ---- Personal layer: water polo, cello, dog. Decorative only: aria-hidden,
+               pointer-events:none, never affects layout, all opt out of reduced motion. ---- */
+        .pball { position: absolute; right: 6%; bottom: 74px; width: 74px; height: 74px; pointer-events: none; z-index: 2;
+                 will-change: transform; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+        .pball svg { display: block; width: 100%; height: 100%; }
+        .pball .wave { position: absolute; left: -14px; right: -14px; bottom: -9px; height: 1px; background: #1f6f4f; opacity: .32; }
+        .strings { position: absolute; left: 0; top: 0; bottom: 0; width: 74px; display: flex; justify-content: space-between;
+                   pointer-events: auto; z-index: 2; }
+        .strings i { display: block; width: 1px; background: #c9cec9; height: 100%; transform-origin: center; }
+        .strings i.pluck { animation: pluck .55s cubic-bezier(.25,.9,.3,1); background: #1f6f4f; }
+        @keyframes pluck {
+            0% { transform: scaleX(1) translateX(0); }
+            18% { transform: scaleX(2.6) translateX(3px); }
+            42% { transform: scaleX(1.7) translateX(-2px); }
+            68% { transform: scaleX(1.3) translateX(1px); }
+            100% { transform: scaleX(1) translateX(0); }
+        }
+        .dog { position: absolute; left: 0; bottom: 0; width: 62px; pointer-events: none; opacity: 0;
+               transform: translateX(-40px); transition: opacity .5s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+        .dog.trot { opacity: .85; transform: translateX(0); }
+        .dog .tail { transform-origin: 4px 12px; }
+        .dog.trot .tail { animation: wag .5s ease-in-out infinite; }
+        @keyframes wag { 0%,100% { transform: rotate(-16deg); } 50% { transform: rotate(18deg); } }
+        @media (prefers-reduced-motion: reduce) {
+            .pball { transition: none !important; }
+            .strings i.pluck { animation: none !important; }
+            .dog { opacity: .85 !important; transform: none !important; }
+            .dog.trot .tail { animation: none !important; }
+        }
+        @media (max-width: 900px) { .pball, .strings, .dog { display: none; } }
         /* Premium button: fill on hover */
         .btn-fill { transition: background .3s ease, color .3s ease, gap .2s ease; }
         .btn-fill:hover { background: #0b0c0c; color: #fff; }
@@ -190,7 +220,13 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </button>
 </div>
 </div>
-<div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
+<div aria-hidden="true" class="pball" id="pball">
+<span class="wave"></span>
+<svg viewBox="0 0 60 60" fill="none" stroke="#0b0c0c" stroke-width="1.4">
+<circle cx="30" cy="30" r="27"/>
+<path d="M30 3 Q14 30 30 57 M30 3 Q46 30 30 57 M3 30 Q30 16 57 30 M3 30 Q30 44 57 30"/>
+</svg>
+</div><div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
 <div class="absolute inset-0 border-l border-t border-outline-variant/30 md:border-transparent pointer-events-none"></div>
 <div class="relative w-full max-w-sm aspect-[3/4] p-2 bg-surface border border-outline-variant/50 shadow-[0_18px_70px_-24px_rgba(11,12,12,0.28)]">
 <div class="w-full h-full relative overflow-hidden border border-outline-variant/30 bg-surface-container-high">
@@ -207,7 +243,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </section>
 <!-- ============ 01 / ABOUT ============ -->
 <section class="border-t border-outline-variant" id="about">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32 relative"><div aria-hidden="true" class="strings" id="strings"><i></i><i></i><i></i><i></i></div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span>
@@ -419,7 +455,13 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </section>
 </main>
 <!-- Footer -->
-<footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter border-t border-outline-variant bg-background">
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter border-t border-outline-variant bg-background relative overflow-hidden"><div aria-hidden="true" class="dog" id="dog">
+<svg viewBox="0 0 62 34" fill="none" stroke="#0b0c0c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+<path class="tail" d="M8 14 L2 6"/>
+<path d="M8 14 H38 M38 14 q7 0 8 -7 M46 7 l5 -4 1 6 M46 7 q-1 4 -4 6 M12 14 v12 M20 14 v12 M32 14 v12 M40 16 v10"/>
+<circle cx="49" cy="6" r="0.9" fill="#0b0c0c"/>
+</svg>
+</div>
 <div class="font-mono text-label-caps text-primary uppercase tracking-widest">© 2026 ISAAC JUNG</div>
 <nav class="flex gap-6 font-caption text-caption">
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="mailto:isaacjung0702@gmail.com">Email</a>
@@ -503,6 +545,67 @@ FORM: Vertical expandable index — an extension of the established single-page 
     setTimeout(unfold, document.documentElement.classList.contains('preload') ? 1500 : 140);
     setTimeout(unfold, 3200);
     window.addEventListener('load', function(){ setTimeout(unfold, 200); });
+  }
+})();
+(function(){
+  // ---- Personal layer: water polo (scroll + cursor), cello strings (mouse), dog (scroll) ----
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = !window.matchMedia || matchMedia('(pointer: fine)').matches;
+
+  // Water polo ball: rolls with scroll, drifts toward the cursor, bobs on the waterline.
+  var ball = document.getElementById('pball');
+  if (ball && !reduce) {
+    var spin = 0, dx = 0, dy = 0, bob = 0;
+    var paint = function(){ ball.style.transform = 'translate(' + dx + 'px,' + (dy + bob) + 'px) rotate(' + spin + 'deg)'; };
+    window.addEventListener('scroll', function(){
+      spin = window.scrollY * 0.45;
+      bob = Math.sin(window.scrollY / 90) * 5;
+      paint();
+    }, { passive: true });
+    if (fine) {
+      window.addEventListener('mousemove', function(e){
+        var r = ball.getBoundingClientRect();
+        var mx = e.clientX - (r.left + r.width / 2), my = e.clientY - (r.top + r.height / 2);
+        var d = Math.max(Math.hypot(mx, my), 1);
+        var pull = Math.min(26, 2600 / d);           // closer cursor => stronger drift
+        dx = (mx / d) * pull; dy = (my / d) * pull;
+        paint();
+      }, { passive: true });
+    }
+    paint();
+  }
+
+  // Cello strings: pluck the string your cursor crosses.
+  var strings = document.getElementById('strings');
+  if (strings && fine && !reduce) {
+    var last = -1;
+    strings.addEventListener('mousemove', function(e){
+      var items = strings.querySelectorAll('i'), best = -1, bestD = 12;
+      for (var i = 0; i < items.length; i++) {
+        var r = items[i].getBoundingClientRect();
+        var d = Math.abs(e.clientX - (r.left + r.width / 2));
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      if (best > -1 && best !== last) {
+        var el = items[best];
+        el.classList.remove('pluck'); void el.offsetWidth; el.classList.add('pluck');
+        el.addEventListener('animationend', function h(){ el.classList.remove('pluck'); el.removeEventListener('animationend', h); });
+      }
+      last = best;
+    }, { passive: true });
+    strings.addEventListener('mouseleave', function(){ last = -1; });
+  }
+
+  // Dog: trots in when the footer arrives.
+  var dog = document.getElementById('dog');
+  if (dog) {
+    var foot = dog.parentElement;
+    var check = function(){
+      if (foot.getBoundingClientRect().top < window.innerHeight - 40) { dog.classList.add('trot'); }
+    };
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    setTimeout(check, 300); check();
   }
 })();
 (function(){
