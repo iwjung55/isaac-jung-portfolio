@@ -4,7 +4,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},3000);}}catch(e){}})();</script>
 <title>Isaac Jung — Data Science &amp; Machine Learning</title>
-<meta content="Isaac Jung — Statistics &amp; Machine Learning at Carnegie Mellon. Data science, LLM-safety research, and algorithmic trading." name="description"/>
+<meta content="Isaac Jung — Statistics &amp; Machine Learning at Carnegie Mellon. Data science, LLM-safety research, and tools that put data to work." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <meta content="Isaac Jung — Data Science &amp; Machine Learning" property="og:title"/>
 <meta content="Statistics &amp; ML @ Carnegie Mellon — data science, LLM-safety research, and quantitative trading." property="og:description"/>
@@ -289,7 +289,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 <p class="tagline font-display text-headline-md md:text-headline-lg-mobile text-on-surface-variant mt-5 mb-7 leading-tight">Data <em>×</em> Models <em>×</em> Products</p>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed mb-9">
-                    Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and trading systems.
+                    Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and tools that put data to work.
                 </p>
 <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
 <a class="btn-fill inline-flex items-center gap-2 border border-primary px-6 py-3 font-mono text-label-caps uppercase tracking-widest" href="#work">
@@ -354,12 +354,13 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span>
-<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Statistics, ML, and a trading bot.</h2>
+<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">I like data that gets used.</h2>
 </div>
 <div class="md:col-span-7 md:col-start-6 reveal" style="transition-delay:120ms;">
 <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
-<p>I'm a Statistics &amp; Machine Learning student at Carnegie Mellon. I've stress-tested LLM safety benchmarks, built predictive models on product and nonprofit data, and placed 2nd in arbitrage at the Rotman trading competition.</p>
-<p>Outside that: economics, philosophy, cello, poker.</p>
+<p>I'm a Statistics &amp; Machine Learning student at Carnegie Mellon. What I actually care about is data that gets used — a number that changes what somebody does next, not one that sits in a slide.</p>
+<p>That's been most of my work so far: stress-testing the benchmarks people use to decide whether a language model is safe, turning nonprofit program data into the metrics that go into grant applications, and building ArbBot, which watches two prediction markets and says something useful when they disagree.</p>
+<p>Away from it: water polo, cello, poker, and a dog who is thoroughly unimpressed by all of the above.</p>
 </div>
 </div>
 </div>
@@ -379,15 +380,15 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span class="work-index font-mono text-label-caps text-outline">01</span>
 <span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">currency_exchange</span></span>
 <span class="work-head">
-<span class="work-title font-headline-md text-headline-md text-primary">arbbot — automated arbitrage bot</span>
-<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">ALGO TRADING · ARBITRAGE · AUTOMATION</span>
+<span class="work-title font-headline-md text-headline-md text-primary">ArbBot — Polymarket ⇄ Kalshi arbitrage tracker</span>
+<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">PREDICTION MARKETS · REAL-TIME DATA · LIVE</span>
 </span>
 <span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
 </summary>
 <div class="work-body">
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">An automated arbitrage bot that monitors markets for pricing inefficiencies and acts on them programmatically — an engineering extension of the rules-based arbitrage strategy that placed 2nd at the CMU MSCF Rotman Trading Competition.</p>
-<figure class="plot-fig"><canvas data-plot="spread" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Cross-venue spread the bot watches for<span class="sch">SCHEMATIC — NOT TRADE DATA</span></figcaption></figure>
-<div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PERSONAL PROJECT</span><a class="btn-ghost" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a></div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Polymarket and Kalshi often price the identical event differently. ArbBot fuzzy-matches thousands of live markets across both platforms every 30 minutes, then re-reads both order books every 5 seconds — adding Kalshi's taker fee and a slippage buffer — to compute the true cost of buying YES on one side and NO on the other. When both legs together cost less than $1.00, that's an edge, and the dashboard surfaces the two-leg playbook with payouts. It reads public prices only and never places a trade.</p>
+<figure class="plot-fig"><canvas data-plot="spread" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> The spread ArbBot watches between the two venues<span class="sch">SCHEMATIC — NOT TRADE DATA</span></figcaption></figure>
+<div class="work-actions"><a class="btn-ghost" href="https://poly-kalshi-tracker.onrender.com/" target="_blank" rel="noopener">Live dashboard <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a><a class="btn-ghost" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a><span class="font-mono text-label-caps tracking-widest text-outline">PERSONAL PROJECT</span></div>
 </div>
 </details><details class="work-item group border-t border-outline-variant">
 <summary class="work-summary">
@@ -910,7 +911,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
           x2 === 0 ? ctx.moveTo(x2, y2) : ctx.lineTo(x2, y2);
         }
         ctx.stroke();
-        label(ctx, 'VENUE A / VENUE B', 6, h - 6);
+        label(ctx, 'POLYMARKET / KALSHI', 6, h - 6);
       }
     };
     function render(cv){
