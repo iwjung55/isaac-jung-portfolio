@@ -130,6 +130,21 @@
         }
         @keyframes nameReveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
         .tagline em { font-style: normal; color: #1f6f4f; }
+        /* Signal green on hover, applied across the whole page */
+        a:hover, button:hover, summary:hover,
+        .work-summary:hover .work-title, .work-summary:hover .work-tags, .work-summary:hover .work-index,
+        .work-bullets li:hover, h2:hover, h3:hover, .tagline:hover, dt:hover, dd:hover {
+            color: #1f6f4f;
+        }
+        a, button, summary, h2, h3, .tagline, .work-bullets li { transition: color .25s ease; }
+        .work-bullets li { padding-left: 20px; position: relative; margin-bottom: 10px;
+            font-family: Archivo, sans-serif; font-size: 16px; line-height: 1.65; color: #444748; }
+        .work-bullets li::before { content: ""; position: absolute; left: 4px; top: 10px;
+            width: 5px; height: 5px; background: #6e746e; border-radius: 50%; }
+        .work-bullets li:hover::before { background: #1f6f4f; }
+        /* Dog sits under the portrait */
+        .dog { position: static; width: 62px; margin: 46px 0 0 auto; opacity: 0; transform: translateX(-24px);
+               transition: opacity .5s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
         @media (prefers-reduced-motion: reduce) {
             .shotline.armed .hero-name, .shotline.armed .goal, .shotline.armed .pball { opacity: 1 !important; }
             .shotline.shot .hero-name, .shotline.shot .pball, .shotline.shot .goal,
@@ -160,7 +175,7 @@
             .dog { opacity: .85 !important; transform: none !important; }
             .dog.trot .tail { animation: none !important; }
         }
-        @media (max-width: 900px) { .pball, .goal, .wake, .drop, .cello, .dog { display: none; } }
+        @media (max-width: 900px) { .pball, .goal, .wake, .drop, .cello { display: none; } }
         /* Premium button: fill on hover */
         .btn-fill { transition: background .3s ease, color .3s ease, gap .2s ease; }
         .btn-fill:hover { background: #0b0c0c; color: #fff; }
@@ -276,7 +291,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </button>
 </div>
 </div>
-<div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
+<div class="md:col-span-5 relative flex flex-col items-center md:items-end pt-8 md:pt-0">
 <div class="absolute inset-0 border-l border-t border-outline-variant/30 md:border-transparent pointer-events-none"></div>
 <div class="relative w-full max-w-sm aspect-[3/4] p-2 bg-surface border border-outline-variant/50 shadow-[0_18px_70px_-24px_rgba(11,12,12,0.28)]">
 <div class="w-full h-full relative overflow-hidden border border-outline-variant/30 bg-surface-container-high">
@@ -287,6 +302,13 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 </div>
 <div class="absolute -bottom-6 right-0 font-mono text-caption text-on-surface-variant text-right">Based in Pittsburgh, PA.</div>
+</div>
+<div aria-hidden="true" class="dog" id="dog">
+<svg viewBox="0 0 62 34" fill="none" stroke="#0b0c0c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+<path class="tail" d="M8 14 L2 6"/>
+<path d="M8 14 H38 M38 14 q7 0 8 -7 M46 7 l5 -4 1 6 M46 7 q-1 4 -4 6 M12 14 v12 M20 14 v12 M32 14 v12 M40 16 v10"/>
+<circle cx="49" cy="6" r="0.9" fill="#0b0c0c"/>
+</svg>
 </div>
 </div>
 </div>
@@ -390,17 +412,9 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PRINCETON · 2024</span></div>
 </div>
 </details>
-<div class="work-minor border-t border-b border-outline-variant">
-<span class="font-mono text-label-caps text-outline">05</span>
-<div class="flex-1">
-<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-<span class="font-body-md text-body-md text-primary">John Locke Essay Competition</span>
-<span class="font-mono text-caption tracking-wider text-on-surface-variant">2× FINALIST · OXFORD</span>
-</div>
-<p class="font-caption text-caption text-on-surface-variant mt-1 max-w-xl leading-relaxed">Two-time finalist in a global economics essay competition (~19,000 entries in 2023; 43,000+ in 2024).</p>
-</div>
-</div>
-</div>
+<ul class="work-bullets border-t border-outline-variant pt-6 mt-2">
+<li><span class="font-body-md text-body-md text-primary">John Locke Essay Competition</span> — two-time finalist (Oxford), ~19,000 entries in 2023 and 43,000+ in 2024.</li>
+</ul>
 </div>
 </section>
 <!-- ============ 03 / EXPERIENCE ============ -->
@@ -521,13 +535,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </section>
 </main>
 <!-- Footer -->
-<footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter border-t border-outline-variant bg-background relative overflow-hidden"><div aria-hidden="true" class="dog" id="dog">
-<svg viewBox="0 0 62 34" fill="none" stroke="#0b0c0c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-<path class="tail" d="M8 14 L2 6"/>
-<path d="M8 14 H38 M38 14 q7 0 8 -7 M46 7 l5 -4 1 6 M46 7 q-1 4 -4 6 M12 14 v12 M20 14 v12 M32 14 v12 M40 16 v10"/>
-<circle cx="49" cy="6" r="0.9" fill="#0b0c0c"/>
-</svg>
-</div>
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter border-t border-outline-variant bg-background">
 <div class="font-mono text-label-caps text-primary uppercase tracking-widest">© 2026 ISAAC JUNG</div>
 <nav class="flex gap-6 font-caption text-caption">
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 underline-offset-4 hover:underline" href="mailto:isaacjung0702@gmail.com">Email</a>
