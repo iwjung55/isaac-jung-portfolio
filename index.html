@@ -150,9 +150,14 @@
         @keyframes nameReveal { from { opacity: 0; transform: translateY(16px) scale(.99); } to { opacity: 1; transform: none; } }
         .tagline em { font-style: normal; color: #1f6f4f; }
         /* A quiet nod to floral arranging: a small sprig beside each section number */
-        .sprig { display: inline-block; width: 46px; height: 16px; margin-left: 14px; color: #a7b0a7;
+        .branch { position: absolute; right: 4%; bottom: -14px; width: 120px; color: #a7b0a7; opacity: .45;
+                  pointer-events: none; z-index: 0; transition: color .5s ease, opacity .5s ease; }
+        #contact:hover .branch { color: #1f6f4f; opacity: .7; }
+        #contact > div { position: relative; z-index: 1; }
+        @media (max-width: 900px) { .branch { display: none; } }
+        .sprig { display: inline-block; width: 15px; height: 15px; margin-left: 13px; color: #a7b0a7;
                  vertical-align: middle; transition: color .4s ease, transform .5s cubic-bezier(.2,.8,.2,1); }
-        section:hover .sprig, .sprig:hover { color: #1f6f4f; transform: translateX(3px); }
+        section:hover .sprig, .sprig:hover { color: #1f6f4f; transform: rotate(72deg); }
         /* Signal green on hover, applied across the whole page */
         a:hover, button:hover, summary:hover,
         .work-summary:hover .work-title, .work-summary:hover .work-tags, .work-summary:hover .work-index,
@@ -268,7 +273,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
 <canvas aria-hidden="true" id="water"></canvas>
-<div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant flex items-center">00 / INDEX<svg aria-hidden="true" class="sprig" viewBox="0 0 46 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h30"/><path d="M10 8c2.6-3.6 6.2-3.6 8.4-1.2-2.4 2.6-6 2.8-8.4 1.2z"/><path d="M14 8c2.6 3.6 6.2 3.6 8.4 1.2-2.4-2.6-6-2.8-8.4-1.2z"/><circle cx="36" cy="8" r="3.1"/><path d="M36 4.9V2.4M36 13.6v-2.5M32.9 8h-2.4M41.5 8h-2.4"/></svg></div>
+<div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant flex items-center">00 / INDEX<svg aria-hidden="true" class="sprig" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="8.00" cy="4.10" rx="2.5" ry="3.4" transform="rotate(0.0 8.00 4.10)"/><ellipse cx="11.71" cy="6.79" rx="2.5" ry="3.4" transform="rotate(72.0 11.71 6.79)"/><ellipse cx="10.29" cy="11.16" rx="2.5" ry="3.4" transform="rotate(144.0 10.29 11.16)"/><ellipse cx="5.71" cy="11.16" rx="2.5" ry="3.4" transform="rotate(216.0 5.71 11.16)"/><ellipse cx="4.29" cy="6.79" rx="2.5" ry="3.4" transform="rotate(288.0 4.29 6.79)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/></svg></div>
 <div class="shotline" id="shotline">
 <h1 class="hero-name font-display text-headline-lg-mobile md:text-display text-primary leading-none" id="heroName">Isaac Jung</h1>
 <div aria-hidden="true" class="pball" id="pball"><svg viewBox="0 0 60 60">
@@ -357,7 +362,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span><svg aria-hidden="true" class="sprig" viewBox="0 0 46 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h30"/><path d="M10 8c2.6-3.6 6.2-3.6 8.4-1.2-2.4 2.6-6 2.8-8.4 1.2z"/><path d="M14 8c2.6 3.6 6.2 3.6 8.4 1.2-2.4-2.6-6-2.8-8.4-1.2z"/><circle cx="36" cy="8" r="3.1"/><path d="M36 4.9V2.4M36 13.6v-2.5M32.9 8h-2.4M41.5 8h-2.4"/></svg>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span><svg aria-hidden="true" class="sprig" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="8.00" cy="4.10" rx="2.5" ry="3.4" transform="rotate(0.0 8.00 4.10)"/><ellipse cx="11.71" cy="6.79" rx="2.5" ry="3.4" transform="rotate(72.0 11.71 6.79)"/><ellipse cx="10.29" cy="11.16" rx="2.5" ry="3.4" transform="rotate(144.0 10.29 11.16)"/><ellipse cx="5.71" cy="11.16" rx="2.5" ry="3.4" transform="rotate(216.0 5.71 11.16)"/><ellipse cx="4.29" cy="6.79" rx="2.5" ry="3.4" transform="rotate(288.0 4.29 6.79)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Stat and ML major who likes building things.</h2>
 </div>
 <div class="md:col-span-7 md:col-start-6 reveal" style="transition-delay:120ms;">
@@ -375,7 +380,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <section class="border-t border-outline-variant" id="work">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
 <div class="mb-16 border-b border-outline-variant pb-6 md:pb-8 reveal">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">02 / SELECTED WORK</span><svg aria-hidden="true" class="sprig" viewBox="0 0 46 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h30"/><path d="M10 8c2.6-3.6 6.2-3.6 8.4-1.2-2.4 2.6-6 2.8-8.4 1.2z"/><path d="M14 8c2.6 3.6 6.2 3.6 8.4 1.2-2.4-2.6-6-2.8-8.4-1.2z"/><circle cx="36" cy="8" r="3.1"/><path d="M36 4.9V2.4M36 13.6v-2.5M32.9 8h-2.4M41.5 8h-2.4"/></svg>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">02 / SELECTED WORK</span><svg aria-hidden="true" class="sprig" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="8.00" cy="4.10" rx="2.5" ry="3.4" transform="rotate(0.0 8.00 4.10)"/><ellipse cx="11.71" cy="6.79" rx="2.5" ry="3.4" transform="rotate(72.0 11.71 6.79)"/><ellipse cx="10.29" cy="11.16" rx="2.5" ry="3.4" transform="rotate(144.0 10.29 11.16)"/><ellipse cx="5.71" cy="11.16" rx="2.5" ry="3.4" transform="rotate(216.0 5.71 11.16)"/><ellipse cx="4.29" cy="6.79" rx="2.5" ry="3.4" transform="rotate(288.0 4.29 6.79)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Projects, research &amp; competition.</h2>
 </div>
 <div class="flex flex-col reveal">
@@ -462,7 +467,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32 flex flex-col gap-16">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-b border-outline-variant pb-8 reveal">
 <div class="flex flex-col gap-4">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">03 / EXPERIENCE</span><svg aria-hidden="true" class="sprig" viewBox="0 0 46 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h30"/><path d="M10 8c2.6-3.6 6.2-3.6 8.4-1.2-2.4 2.6-6 2.8-8.4 1.2z"/><path d="M14 8c2.6 3.6 6.2 3.6 8.4 1.2-2.4-2.6-6-2.8-8.4-1.2z"/><circle cx="36" cy="8" r="3.1"/><path d="M36 4.9V2.4M36 13.6v-2.5M32.9 8h-2.4M41.5 8h-2.4"/></svg>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">03 / EXPERIENCE</span><svg aria-hidden="true" class="sprig" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="8.00" cy="4.10" rx="2.5" ry="3.4" transform="rotate(0.0 8.00 4.10)"/><ellipse cx="11.71" cy="6.79" rx="2.5" ry="3.4" transform="rotate(72.0 11.71 6.79)"/><ellipse cx="10.29" cy="11.16" rx="2.5" ry="3.4" transform="rotate(144.0 10.29 11.16)"/><ellipse cx="5.71" cy="11.16" rx="2.5" ry="3.4" transform="rotate(216.0 5.71 11.16)"/><ellipse cx="4.29" cy="6.79" rx="2.5" ry="3.4" transform="rotate(288.0 4.29 6.79)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary max-w-2xl leading-tight">Research, data work &amp; competition.</h2>
 </div>
 <a class="group flex items-center gap-2 border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors duration-300 shrink-0" href="resume.pdf" target="_blank" rel="noopener">
@@ -546,11 +551,20 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 </section>
 <!-- ============ 04 / CONTACT ============ -->
-<section class="border-t border-outline-variant bg-background scroll-mt-24" id="contact">
+<section class="border-t border-outline-variant bg-background scroll-mt-24 relative overflow-hidden" id="contact"><svg aria-hidden="true" class="branch" viewBox="0 0 120 190" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M60 188V44"/>
+<path d="M60 150c-16-4-26-16-27-31 15-2 26 8 27 31z"/>
+<path d="M60 132c16-4 26-16 27-31-15-2-26 8-27 31z"/>
+<path d="M60 106c-14-4-23-14-24-27 13-2 23 7 24 27z"/>
+<path d="M60 88c14-4 23-14 24-27-13-2-23 7-24 27z"/>
+<circle cx="60" cy="30" r="12"/>
+<path d="M60 18V6M60 54V42M48 30H36M84 30H72M51.5 21.5l-8.5-8.5M77 47l-8.5-8.5M51.5 38.5l-8.5 8.5M77 13l-8.5 8.5"/>
+<circle cx="60" cy="30" r="3.4" fill="currentColor" stroke="none"/>
+</svg>
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">04 / CONTACT</span><svg aria-hidden="true" class="sprig" viewBox="0 0 46 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h30"/><path d="M10 8c2.6-3.6 6.2-3.6 8.4-1.2-2.4 2.6-6 2.8-8.4 1.2z"/><path d="M14 8c2.6 3.6 6.2 3.6 8.4 1.2-2.4-2.6-6-2.8-8.4-1.2z"/><circle cx="36" cy="8" r="3.1"/><path d="M36 4.9V2.4M36 13.6v-2.5M32.9 8h-2.4M41.5 8h-2.4"/></svg>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">04 / CONTACT</span><svg aria-hidden="true" class="sprig" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="8.00" cy="4.10" rx="2.5" ry="3.4" transform="rotate(0.0 8.00 4.10)"/><ellipse cx="11.71" cy="6.79" rx="2.5" ry="3.4" transform="rotate(72.0 11.71 6.79)"/><ellipse cx="10.29" cy="11.16" rx="2.5" ry="3.4" transform="rotate(144.0 10.29 11.16)"/><ellipse cx="5.71" cy="11.16" rx="2.5" ry="3.4" transform="rotate(216.0 5.71 11.16)"/><ellipse cx="4.29" cy="6.79" rx="2.5" ry="3.4" transform="rotate(288.0 4.29 6.79)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Let's talk.</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-xs leading-relaxed">Open to internships and research. Happy to talk data, markets, or policy.</p>
 </div>
