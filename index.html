@@ -149,6 +149,10 @@
         }
         @keyframes nameReveal { from { opacity: 0; transform: translateY(16px) scale(.99); } to { opacity: 1; transform: none; } }
         .tagline em { font-style: normal; color: #1f6f4f; }
+        /* A quiet nod to floral arranging: a small sprig beside each section number */
+        .sprig { display: inline-block; width: 34px; height: 12px; margin-left: 12px; color: #b9c0b9;
+                 vertical-align: middle; transition: color .4s ease, transform .5s cubic-bezier(.2,.8,.2,1); }
+        section:hover .sprig, .sprig:hover { color: #1f6f4f; transform: translateX(3px); }
         /* Signal green on hover, applied across the whole page */
         a:hover, button:hover, summary:hover,
         .work-summary:hover .work-title, .work-summary:hover .work-tags, .work-summary:hover .work-index,
@@ -233,7 +237,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div id="preloader" aria-hidden="true">
 <div class="pl-mark">IJ</div>
 <div class="pl-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<div class="pl-readout"><span id="pl-status">LOADING DATA</span> — <b id="pl-pct">0%</b></div>
+<div class="pl-readout"><span id="pl-status">LOADING DATA</span> <b id="pl-pct">0%</b></div>
 </div>
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-gutter bg-background/80 backdrop-blur-sm border-b border-outline-variant">
@@ -264,7 +268,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
 <canvas aria-hidden="true" id="water"></canvas>
-<div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant">00 / INDEX</div>
+<div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant flex items-center">00 / INDEX<svg aria-hidden="true" class="sprig" viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M1 6h20"/><path d="M8 6c0-2.4 1.6-4 3.4-3.6C13 2.8 13 5 11 6"/><path d="M8 6c0 2.4 1.6 4 3.4 3.6C13 9.2 13 7 11 6"/><path d="M17 6c0-2.6 1.8-4.4 3.8-4 1.8.4 1.8 2.8-.4 4"/><path d="M17 6c0 2.6 1.8 4.4 3.8 4 1.8-.4 1.8-2.8-.4-4"/><circle cx="27" cy="6" r="2.6"/><path d="M27 3.4V1M27 11V8.6M24.4 6H22M32 6h-2.4"/></svg></div>
 <div class="shotline" id="shotline">
 <h1 class="hero-name font-display text-headline-lg-mobile md:text-display text-primary leading-none" id="heroName">Isaac Jung</h1>
 <div aria-hidden="true" class="pball" id="pball"><svg viewBox="0 0 60 60">
@@ -353,14 +357,14 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span>
-<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">I like data that gets used.</h2>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span><svg aria-hidden="true" class="sprig" viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M1 6h20"/><path d="M8 6c0-2.4 1.6-4 3.4-3.6C13 2.8 13 5 11 6"/><path d="M8 6c0 2.4 1.6 4 3.4 3.6C13 9.2 13 7 11 6"/><path d="M17 6c0-2.6 1.8-4.4 3.8-4 1.8.4 1.8 2.8-.4 4"/><path d="M17 6c0 2.6 1.8 4.4 3.8 4 1.8-.4 1.8-2.8-.4-4"/><circle cx="27" cy="6" r="2.6"/><path d="M27 3.4V1M27 11V8.6M24.4 6H22M32 6h-2.4"/></svg>
+<h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Stat and ML major who likes building things.</h2>
 </div>
 <div class="md:col-span-7 md:col-start-6 reveal" style="transition-delay:120ms;">
 <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
-<p>I'm a Statistics &amp; Machine Learning student at Carnegie Mellon. What I actually care about is data that gets used — a number that changes what somebody does next, not one that sits in a slide.</p>
-<p>That's been most of my work so far: stress-testing the benchmarks people use to decide whether a language model is safe, turning nonprofit program data into the metrics that go into grant applications, and building ArbBot, which watches two prediction markets and says something useful when they disagree.</p>
-<p>Away from it: water polo, cello, poker, and a dog who is thoroughly unimpressed by all of the above.</p>
+<p>I study Statistics and Machine Learning at Carnegie Mellon. Most of what I enjoy is building: taking a messy pile of data, figuring out what it can honestly tell you, and turning that into something a person can actually use.</p>
+<p>So far that has meant testing how well we measure the safety of language models, turning nonprofit program data into the numbers that go into grant applications, and writing ArbBot, which watches two prediction markets and flags when they disagree on the same event.</p>
+<p>Outside of school I play water polo and cello, make floral arrangements, play a fair amount of poker, and hang around with my dog. I read a lot of economics, philosophy, and history.</p>
 </div>
 </div>
 </div>
@@ -371,7 +375,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <section class="border-t border-outline-variant" id="work">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
 <div class="mb-16 border-b border-outline-variant pb-6 md:pb-8 reveal">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">02 / SELECTED WORK</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">02 / SELECTED WORK</span><svg aria-hidden="true" class="sprig" viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M1 6h20"/><path d="M8 6c0-2.4 1.6-4 3.4-3.6C13 2.8 13 5 11 6"/><path d="M8 6c0 2.4 1.6 4 3.4 3.6C13 9.2 13 7 11 6"/><path d="M17 6c0-2.6 1.8-4.4 3.8-4 1.8.4 1.8 2.8-.4 4"/><path d="M17 6c0 2.6 1.8 4.4 3.8 4 1.8-.4 1.8-2.8-.4-4"/><circle cx="27" cy="6" r="2.6"/><path d="M27 3.4V1M27 11V8.6M24.4 6H22M32 6h-2.4"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Projects, research &amp; competition.</h2>
 </div>
 <div class="flex flex-col reveal">
@@ -380,14 +384,14 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span class="work-index font-mono text-label-caps text-outline">01</span>
 <span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">currency_exchange</span></span>
 <span class="work-head">
-<span class="work-title font-headline-md text-headline-md text-primary">ArbBot — Polymarket ⇄ Kalshi arbitrage tracker</span>
+<span class="work-title font-headline-md text-headline-md text-primary">ArbBot, a Polymarket and Kalshi arbitrage tracker</span>
 <span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">PREDICTION MARKETS · REAL-TIME DATA · LIVE</span>
 </span>
 <span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
 </summary>
 <div class="work-body">
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Polymarket and Kalshi often price the identical event differently. ArbBot fuzzy-matches thousands of live markets across both platforms every 30 minutes, then re-reads both order books every 5 seconds — adding Kalshi's taker fee and a slippage buffer — to compute the true cost of buying YES on one side and NO on the other. When both legs together cost less than $1.00, that's an edge, and the dashboard surfaces the two-leg playbook with payouts. It reads public prices only and never places a trade.</p>
-<figure class="plot-fig"><canvas data-plot="spread" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> The spread ArbBot watches between the two venues<span class="sch">SCHEMATIC — NOT TRADE DATA</span></figcaption></figure>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Polymarket and Kalshi often list the same event at different prices. ArbBot matches thousands of live markets across both sites every 30 minutes, then rechecks both order books every 5 seconds. It adds Kalshi's fee and a slippage buffer, then works out what it would really cost to buy YES on one site and NO on the other. If both sides together cost less than a dollar, the payout is guaranteed to be larger, and the dashboard lays out the two trades with the numbers. It only reads public prices. It never places a trade.</p>
+<figure class="plot-fig"><canvas data-plot="spread" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> The spread ArbBot watches between the two venues<span class="sch">ILLUSTRATIVE SHAPE, NOT TRADE DATA</span></figcaption></figure>
 <div class="work-actions"><a class="btn-ghost" href="https://poly-kalshi-tracker.onrender.com/" target="_blank" rel="noopener">Live dashboard <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a><a class="btn-ghost" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a><span class="font-mono text-label-caps tracking-widest text-outline">PERSONAL PROJECT</span></div>
 </div>
 </details><details class="work-item group border-t border-outline-variant">
@@ -401,8 +405,8 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
 </summary>
 <div class="work-body">
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">2nd place, arbitrage track. Implemented a rules-based arbitrage strategy to accumulate roughly $40K in profits, then worked to preserve those gains — executing on price discrepancies for up to $200K in trading opportunities.</p>
-<figure class="plot-fig"><canvas data-plot="bars2" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Profit accumulated vs. opportunity executed</figcaption></figure>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Second place in the arbitrage track at Carnegie Mellon's MSCF Rotman Trading Competition. I ran a rules based strategy inside the competition's simulated market, built it up to $200K in simulated profit, and then spent the rest of the session protecting those gains as prices moved.</p>
+<figure class="plot-fig"><canvas data-plot="pnl" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Simulated profit over the competition session<span class="sch">PEAK $200K, SIMULATED MARKET</span></figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">CARNEGIE MELLON · SEP 2025</span></div>
 </div>
 </details><details class="work-item group border-t border-outline-variant">
@@ -416,7 +420,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
 </summary>
 <div class="work-body">
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">As an undergraduate research assistant at Carnegie Mellon, evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks for alignment and misuse risk — assessing the robustness of current evaluation methods and flagging recurring failure patterns to strengthen benchmark design.</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">I worked as an undergraduate research assistant at Carnegie Mellon on how language models get tested for safety. I ran more than 5,000 adversarial prompts through 50 different safety benchmarks, then looked at where those benchmarks caught real problems and where they let things through. The point was to find the blind spots in how the field measures risk.</p>
 <figure class="plot-fig"><canvas data-plot="density" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> 5,000+ prompts across 50 benchmarks</figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">CARNEGIE MELLON · 2026</span></div>
 </div>
@@ -431,7 +435,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
 </summary>
 <div class="work-body">
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Selected from 1,500+ international applicants for a Princeton symposium on global economics and trade. Applied economic reasoning and quantitative analysis to trade-policy tradeoffs, earning a Distinction Award for contributions to discussions on political economy.</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Chosen from more than 1,500 applicants worldwide for a public policy symposium at Princeton on global economics and trade. I argued trade policy tradeoffs using economic reasoning and data, and left with a Distinction Award for my contributions.</p>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PRINCETON · 2024</span></div>
 </div>
 </details>
@@ -446,7 +450,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
 </summary>
 <div class="work-body">
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Two-time finalist (Oxford, UK) in a global essay competition drawing ~19,000 entries in 2023 and over 43,000 in 2024. Essays analyzed economic, demographic, and historical trends, including the causes and consequences of global population decline.</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Twice a finalist in the John Locke essay competition in Oxford. The contest drew about 19,000 entries in 2023 and more than 43,000 in 2024. My essays looked at economic and demographic trends, including what happens to a country as its population shrinks.</p>
 <figure class="plot-fig"><canvas data-plot="growth" height="92" width="560"></canvas><figcaption class="plot-cap"><b>PLOT</b> Entries in the year I was a finalist</figcaption></figure>
 <div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">OXFORD · 2023–2024</span></div>
 </div>
@@ -458,7 +462,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32 flex flex-col gap-16">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-b border-outline-variant pb-8 reveal">
 <div class="flex flex-col gap-4">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">03 / EXPERIENCE</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">03 / EXPERIENCE</span><svg aria-hidden="true" class="sprig" viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M1 6h20"/><path d="M8 6c0-2.4 1.6-4 3.4-3.6C13 2.8 13 5 11 6"/><path d="M8 6c0 2.4 1.6 4 3.4 3.6C13 9.2 13 7 11 6"/><path d="M17 6c0-2.6 1.8-4.4 3.8-4 1.8.4 1.8 2.8-.4 4"/><path d="M17 6c0 2.6 1.8 4.4 3.8 4 1.8-.4 1.8-2.8-.4-4"/><circle cx="27" cy="6" r="2.6"/><path d="M27 3.4V1M27 11V8.6M24.4 6H22M32 6h-2.4"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary max-w-2xl leading-tight">Research, data work &amp; competition.</h2>
 </div>
 <a class="group flex items-center gap-2 border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors duration-300 shrink-0" href="resume.pdf" target="_blank" rel="noopener">
@@ -473,7 +477,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">EDUCATION</span>
 <h3 class="font-headline-md text-headline-md mb-2 mt-3">Carnegie Mellon University</h3>
 <p class="font-body-md text-body-md text-primary mb-1">B.S. Statistics &amp; Machine Learning</p>
-<p class="font-mono text-caption text-on-surface-variant mb-6">AUG 2025 — PRESENT · PITTSBURGH, PA</p>
+<p class="font-mono text-caption text-on-surface-variant mb-6">AUG 2025 to PRESENT · PITTSBURGH, PA</p>
 <div class="flex flex-wrap gap-2">
 <span class="px-3 py-1 border border-outline-variant font-mono text-label-caps bg-background">Statistics</span>
 <span class="px-3 py-1 border border-outline-variant font-mono text-label-caps bg-background">Machine Learning</span>
@@ -495,7 +499,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="reveal relative pb-24 group">
 <div class="absolute w-3 h-3 bg-primary -left-[27px] md:-left-[54px] top-2 transition-transform duration-300 group-hover:scale-150"></div>
 <div class="flex flex-col gap-2 mb-6">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">MAY 2026 — PRESENT</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">MAY 2026 to PRESENT</span>
 <h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Mathematics Research Fellow</h3>
 <p class="font-body-lg text-body-lg text-secondary">Carnegie Mellon University</p>
 </div>
@@ -504,7 +508,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="reveal relative pb-24 group">
 <div class="absolute w-3 h-3 bg-outline-variant -left-[27px] md:-left-[54px] top-2 transition-colors duration-300 group-hover:bg-primary"></div>
 <div class="flex flex-col gap-2 mb-6">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">APR 2026 — PRESENT</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">APR 2026 to PRESENT</span>
 <h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">AI Content Evaluator</h3>
 <p class="font-body-lg text-body-lg text-secondary">AfterQuery · San Francisco, CA</p>
 </div>
@@ -513,7 +517,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="reveal relative pb-24 group">
 <div class="absolute w-3 h-3 bg-outline-variant -left-[27px] md:-left-[54px] top-2 transition-colors duration-300 group-hover:bg-primary"></div>
 <div class="flex flex-col gap-2 mb-6">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">MAR 2026 — MAY 2026</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">MAR 2026 to MAY 2026</span>
 <h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Undergraduate Research Assistant</h3>
 <p class="font-body-lg text-body-lg text-secondary">LLM Safety &amp; Benchmarking · Carnegie Mellon University</p>
 </div>
@@ -522,7 +526,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="reveal relative pb-24 group">
 <div class="absolute w-3 h-3 bg-outline-variant -left-[27px] md:-left-[54px] top-2 transition-colors duration-300 group-hover:bg-primary"></div>
 <div class="flex flex-col gap-2 mb-6">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">FEB 2026 — PRESENT</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">FEB 2026 to PRESENT</span>
 <h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Data Analyst</h3>
 <p class="font-body-lg text-body-lg text-secondary">Students Using Data for Social Good</p>
 </div>
@@ -531,7 +535,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="reveal relative pb-4 group">
 <div class="absolute w-3 h-3 bg-outline-variant -left-[27px] md:-left-[54px] top-2 transition-colors duration-300 group-hover:bg-primary"></div>
 <div class="flex flex-col gap-2 mb-6">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">JAN 2026 — PRESENT</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">JAN 2026 to PRESENT</span>
 <h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Data Analyst</h3>
 <p class="font-body-lg text-body-lg text-secondary">Business Technology Group</p>
 </div>
@@ -546,7 +550,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
-<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">04 / CONTACT</span>
+<span class="font-mono text-label-caps tracking-widest text-on-surface-variant">04 / CONTACT</span><svg aria-hidden="true" class="sprig" viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M1 6h20"/><path d="M8 6c0-2.4 1.6-4 3.4-3.6C13 2.8 13 5 11 6"/><path d="M8 6c0 2.4 1.6 4 3.4 3.6C13 9.2 13 7 11 6"/><path d="M17 6c0-2.6 1.8-4.4 3.8-4 1.8.4 1.8 2.8-.4 4"/><path d="M17 6c0 2.6 1.8 4.4 3.8 4 1.8-.4 1.8-2.8-.4-4"/><circle cx="27" cy="6" r="2.6"/><path d="M27 3.4V1M27 11V8.6M24.4 6H22M32 6h-2.4"/></svg>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Let's talk.</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mt-4 max-w-xs leading-relaxed">Open to internships and research. Happy to talk data, markets, or policy.</p>
 </div>
@@ -855,18 +859,45 @@ FORM: Vertical expandable index — an extension of the established single-page 
       ctx.fillText(txt, x, y);
     }
     var draw = {
-      // Rotman: ~$40K accumulated vs up to $200K executed  (real figures)
-      bars2: function(ctx, w, h, k){
+      // Rotman: cumulative simulated P&L, peak $200K (real figure; curve shape illustrative)
+      pnl: function(ctx, w, h, k){
         axis(ctx, w, h);
-        var data = [{ v: 40, l: '$40K PROFIT' }, { v: 200, l: '$200K EXECUTED' }];
-        var bw = 62, gap = 40, base = h - 19, maxv = 200, top = 16;
-        data.forEach(function(d, i){
-          var hgt = (d.v / maxv) * (base - top) * k;
-          var x = 6 + i * (bw + gap);
-          ctx.fillStyle = i ? 'rgba(31,111,79,.28)' : GREEN;
-          ctx.fillRect(x, base - hgt, bw, hgt);
-          label(ctx, d.l, x, h - 6, i ? '#6e746e' : GREEN);
-        });
+        var base = h - 19, top = 15, x0 = 8, x1 = w - 76, peak = 200;
+        // a plausible session: builds, gives some back, recovers to the peak
+        var shape = [0, .18, .12, .34, .52, .44, .63, .81, .74, .93, 1];
+        function pt(i){
+          var t = i / (shape.length - 1);
+          return { x: x0 + (x1 - x0) * t, y: base - (shape[i]) * (base - top) };
+        }
+        var n = Math.max(1, Math.floor((shape.length - 1) * k));
+        var frac = ((shape.length - 1) * k) - n;
+        // filled area under the curve
+        ctx.beginPath(); ctx.moveTo(x0, base);
+        for (var i = 0; i <= n; i++) { var q = pt(i); ctx.lineTo(q.x, q.y); }
+        if (n < shape.length - 1) {
+          var a = pt(n), b = pt(n + 1);
+          ctx.lineTo(a.x + (b.x - a.x) * frac, a.y + (b.y - a.y) * frac);
+        }
+        ctx.lineTo(x0 + (x1 - x0) * k, base); ctx.closePath();
+        ctx.fillStyle = 'rgba(31,111,79,.12)'; ctx.fill();
+        // the curve itself
+        ctx.beginPath(); ctx.moveTo(x0, base);
+        for (var j = 0; j <= n; j++) { var r = pt(j); ctx.lineTo(r.x, r.y); }
+        if (n < shape.length - 1) {
+          var c = pt(n), d = pt(n + 1);
+          ctx.lineTo(c.x + (d.x - c.x) * frac, c.y + (d.y - c.y) * frac);
+        }
+        ctx.strokeStyle = GREEN; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+        // peak marker
+        if (k > .97) {
+          var e = pt(shape.length - 1);
+          ctx.fillStyle = GREEN;
+          ctx.beginPath(); ctx.arc(e.x, e.y, 3.6, 0, 7); ctx.fill();
+          ctx.setLineDash([2,3]); ctx.strokeStyle = 'rgba(31,111,79,.45)'; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(x0, e.y); ctx.lineTo(e.x, e.y); ctx.stroke(); ctx.setLineDash([]);
+          label(ctx, '$' + peak + 'K PEAK', e.x + 8, e.y + 4, GREEN);
+        }
+        label(ctx, 'SESSION', x0, h - 6);
       },
       // LLM safety: 50 benchmarks, 5,000+ prompts  (real counts)
       density: function(ctx, w, h, k){
