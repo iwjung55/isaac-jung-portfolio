@@ -164,8 +164,8 @@
             68% { transform: scaleX(1.5) translateX(1px); }
             100% { transform: scaleX(1) translateX(0); }
         }
-        .dog { position: absolute; left: 0; bottom: 0; width: 62px; pointer-events: none; opacity: 0;
-               transform: translateX(-40px); transition: opacity .5s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+        .dog { position: static; width: 62px; margin: 46px 0 0 auto; pointer-events: none; opacity: 0;
+               transform: translateX(-24px); transition: opacity .5s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
         .dog.trot { opacity: .85; transform: translateX(0); }
         .dog .tail { transform-origin: 4px 12px; }
         .dog.trot .tail { animation: wag .5s ease-in-out infinite; }
