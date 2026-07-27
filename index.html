@@ -153,14 +153,17 @@
            Closed = a tight bud. Hover = the folds open. Never pastel, never cute. */
         /* ---------- Ivy: vines that wrap AROUND a box, never inside it ---------- */
         .ivy { position: absolute; inset: -17px; width: calc(100% + 34px); height: calc(100% + 34px);
-               color: #a7b0a7; overflow: visible; pointer-events: none; z-index: 1;
+               color: #97a197; overflow: visible; pointer-events: none; z-index: 1;
                transition: color .45s ease; }
-        .ivy .tendril, .ivy .leaf { stroke-dasharray: var(--len, 150); stroke-dashoffset: var(--len, 150);
-               transition: stroke-dashoffset .85s cubic-bezier(.2,.8,.25,1); }
-        .ivy .leaf { transition-duration: .5s; transition-delay: .25s; }
-        .ivy .bud { opacity: 0; transition: opacity .4s ease .35s; }
-        .ivy .bud .pet { transform-origin: 0 0; transform: rotate(calc(var(--k) * 72deg)) scale(.45);
-               transition: transform .6s cubic-bezier(.2,.85,.25,1) .4s; }
+        /* At rest the vine is already wrapped around the box, just quiet and part-drawn.
+           Hover completes the growth and opens the bud. */
+        .ivy .tendril, .ivy .leaf { stroke-dasharray: var(--len, 150);
+               stroke-dashoffset: calc(var(--len, 150) * 0.34);
+               transition: stroke-dashoffset .8s cubic-bezier(.2,.8,.25,1); }
+        .ivy .leaf { stroke-dashoffset: 0; transition-duration: .5s; }
+        .ivy .bud { opacity: .62; transition: opacity .45s ease; }
+        .ivy .bud .pet { transform-origin: 0 0; transform: rotate(calc(var(--k) * 72deg)) scale(.42);
+               transition: transform .6s cubic-bezier(.2,.85,.25,1); }
         .ivy .bud .core { fill: currentColor; stroke: none; }
         .blossom:hover .ivy, .blossom:focus-visible .ivy,
         .xp-card:hover .ivy, .xp-card:focus-visible .ivy { color: #1f6f4f; }
