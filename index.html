@@ -2,7 +2,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},3000);}}catch(e){}})();</script>
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!sessionStorage.getItem('plSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){d.classList.add('preload');setTimeout(function(){var p=document.getElementById('preloader');if(p)p.style.display='none';d.style.overflow='';},1800);}}catch(e){}})();</script>
 <title>Isaac Jung — Data Science &amp; Machine Learning</title>
 <meta content="Isaac Jung — Statistics &amp; Machine Learning at Carnegie Mellon. Data science, LLM-safety research, and algorithmic trading." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
@@ -95,15 +95,17 @@
                  will-change: transform; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
         .pball svg { display: block; width: 100%; height: 100%; }
         .pball .wave { position: absolute; left: -14px; right: -14px; bottom: -9px; height: 1px; background: #1f6f4f; opacity: .32; }
-        .strings { position: absolute; left: 0; top: 0; bottom: 0; width: 74px; display: flex; justify-content: space-between;
-                   pointer-events: auto; z-index: 2; }
-        .strings i { display: block; width: 1px; background: #c9cec9; height: 100%; transform-origin: center; }
-        .strings i.pluck { animation: pluck .55s cubic-bezier(.25,.9,.3,1); background: #1f6f4f; }
+        .cello { position: absolute; left: -18px; top: 50%; transform: translateY(-50%); width: 104px;
+                 pointer-events: auto; z-index: 2; opacity: .5; transition: opacity .4s ease; }
+        .cello:hover { opacity: .82; }
+        .cello svg { display: block; width: 100%; height: auto; }
+        .cstring { transform-origin: center; transform-box: fill-box; }
+        .cstring.pluck { animation: pluck .6s cubic-bezier(.25,.9,.3,1); stroke: #1f6f4f; stroke-width: 1.8; }
         @keyframes pluck {
             0% { transform: scaleX(1) translateX(0); }
-            18% { transform: scaleX(2.6) translateX(3px); }
-            42% { transform: scaleX(1.7) translateX(-2px); }
-            68% { transform: scaleX(1.3) translateX(1px); }
+            18% { transform: scaleX(3.4) translateX(2px); }
+            42% { transform: scaleX(2.1) translateX(-1.5px); }
+            68% { transform: scaleX(1.5) translateX(1px); }
             100% { transform: scaleX(1) translateX(0); }
         }
         .dog { position: absolute; left: 0; bottom: 0; width: 62px; pointer-events: none; opacity: 0;
@@ -114,11 +116,11 @@
         @keyframes wag { 0%,100% { transform: rotate(-16deg); } 50% { transform: rotate(18deg); } }
         @media (prefers-reduced-motion: reduce) {
             .pball { transition: none !important; }
-            .strings i.pluck { animation: none !important; }
+            .cstring.pluck { animation: none !important; }
             .dog { opacity: .85 !important; transform: none !important; }
             .dog.trot .tail { animation: none !important; }
         }
-        @media (max-width: 900px) { .pball, .strings, .dog { display: none; } }
+        @media (max-width: 900px) { .pball, .cello, .dog { display: none; } }
         /* Premium button: fill on hover */
         .btn-fill { transition: background .3s ease, color .3s ease, gap .2s ease; }
         .btn-fill:hover { background: #0b0c0c; color: #fff; }
@@ -222,9 +224,15 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </div>
 <div aria-hidden="true" class="pball" id="pball">
 <span class="wave"></span>
-<svg viewBox="0 0 60 60" fill="none" stroke="#0b0c0c" stroke-width="1.4">
-<circle cx="30" cy="30" r="27"/>
-<path d="M30 3 Q14 30 30 57 M30 3 Q46 30 30 57 M3 30 Q30 16 57 30 M3 30 Q30 44 57 30"/>
+<svg viewBox="0 0 60 60">
+<defs><clipPath id="wpc"><circle cx="30" cy="30" r="26.5"/></clipPath></defs>
+<circle cx="30" cy="30" r="26.5" fill="#efc23c" stroke="#0b0c0c" stroke-width="1.6"/>
+<g clip-path="url(#wpc)" fill="none" stroke="#0b0c0c" stroke-width="1.5" stroke-linecap="round">
+<path d="M-8 17 Q30 4 68 17"/><path d="M-8 43 Q30 56 68 43"/>
+<path d="M17 -8 Q4 30 17 68"/><path d="M43 -8 Q56 30 43 68"/>
+</g>
+<g clip-path="url(#wpc)" fill="#0b0c0c" opacity=".22"><circle cx="40.0" cy="30.0" r="0.85"/><circle cx="37.1" cy="37.1" r="0.85"/><circle cx="30.0" cy="40.0" r="0.85"/><circle cx="22.9" cy="37.1" r="0.85"/><circle cx="20.0" cy="30.0" r="0.85"/><circle cx="22.9" cy="22.9" r="0.85"/><circle cx="30.0" cy="20.0" r="0.85"/><circle cx="37.1" cy="22.9" r="0.85"/><circle cx="47.2" cy="35.3" r="0.85"/><circle cx="43.2" cy="42.3" r="0.85"/><circle cx="36.6" cy="46.8" r="0.85"/><circle cx="28.6" cy="47.9" r="0.85"/><circle cx="21.0" cy="45.6" r="0.85"/><circle cx="15.1" cy="40.1" r="0.85"/><circle cx="12.2" cy="32.7" r="0.85"/><circle cx="12.8" cy="24.7" r="0.85"/><circle cx="16.8" cy="17.7" r="0.85"/><circle cx="23.4" cy="13.2" r="0.85"/><circle cx="31.4" cy="12.1" r="0.85"/><circle cx="39.0" cy="14.4" r="0.85"/><circle cx="44.9" cy="19.9" r="0.85"/><circle cx="47.8" cy="27.3" r="0.85"/><circle cx="54.0" cy="30.0" r="0.85"/><circle cx="52.6" cy="38.2" r="0.85"/><circle cx="48.4" cy="45.4" r="0.85"/><circle cx="42.0" cy="50.8" r="0.85"/><circle cx="34.2" cy="53.6" r="0.85"/><circle cx="25.8" cy="53.6" r="0.85"/><circle cx="18.0" cy="50.8" r="0.85"/><circle cx="11.6" cy="45.4" r="0.85"/><circle cx="7.4" cy="38.2" r="0.85"/><circle cx="6.0" cy="30.0" r="0.85"/><circle cx="7.4" cy="21.8" r="0.85"/><circle cx="11.6" cy="14.6" r="0.85"/><circle cx="18.0" cy="9.2" r="0.85"/><circle cx="25.8" cy="6.4" r="0.85"/><circle cx="34.2" cy="6.4" r="0.85"/><circle cx="42.0" cy="9.2" r="0.85"/><circle cx="48.4" cy="14.6" r="0.85"/><circle cx="52.6" cy="21.8" r="0.85"/></g>
+<path d="M13 15 Q19 10 26 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
 </svg>
 </div><div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
 <div class="absolute inset-0 border-l border-t border-outline-variant/30 md:border-transparent pointer-events-none"></div>
@@ -243,7 +251,23 @@ FORM: Vertical expandable index — an extension of the established single-page 
 </section>
 <!-- ============ 01 / ABOUT ============ -->
 <section class="border-t border-outline-variant" id="about">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32 relative"><div aria-hidden="true" class="strings" id="strings"><i></i><i></i><i></i><i></i></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32 relative"><div aria-hidden="true" class="cello" id="cello">
+<svg viewBox="0 0 120 400" fill="none" stroke="#0b0c0c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M60 150c-26 0-40 20-37 46 2 20 17 28 17 42s-17 22-20 44c-4 30 17 56 40 56s44-26 40-56c-3-22-20-30-20-44s15-22 17-42c3-26-11-46-37-46z"/>
+<path d="M55 44h10v106H55z"/>
+<path d="M60 44c-8 0-13-6-13-13 0-8 6-13 13-11 6 2 9 7 7 13-1 5-6 6-8 3"/>
+<path d="M48 30h-6M48 37h-6M72 30h6M72 37h6"/>
+<path d="M44 232c-5-10 2-19 1-25M76 232c5-10-2-19-1-25M44 258c-5 10 2 19 1 25M76 258c5 10-2 19-1 25"/>
+<path d="M44 252h32"/>
+<path d="M60 338v46"/>
+<g class="cstrings" stroke-width="1.1">
+<line class="cstring" x1="55" y1="46" x2="52" y2="330"/>
+<line class="cstring" x1="58" y1="46" x2="57" y2="330"/>
+<line class="cstring" x1="62" y1="46" x2="63" y2="330"/>
+<line class="cstring" x1="65" y1="46" x2="68" y2="330"/>
+</g>
+</svg>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-4 reveal">
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">01 / PROFILE</span>
@@ -487,11 +511,11 @@ FORM: Vertical expandable index — an extension of the established single-page 
     setTimeout(function(){ pl.style.display = 'none'; }, 550);
   }
   var iv = setInterval(function(){
-    v = Math.min(100, v + Math.random() * 15 + 5);
+    v = Math.min(100, v + Math.random() * 26 + 14);
     if (pct) pct.textContent = Math.round(v) + '%';
-    if (v >= 100) { clearInterval(iv); setTimeout(finish, 260); }
-  }, 130);
-  setTimeout(finish, 2600); // hard safety: never stuck
+    if (v >= 100) { clearInterval(iv); setTimeout(finish, 140); }
+  }, 70);
+  setTimeout(finish, 1200); // hard safety: never stuck
 })();
 (function(){
   // Scroll-driven reveal (progressive enhancement). Content is visible by default (.js gate);
@@ -541,10 +565,14 @@ FORM: Vertical expandable index — an extension of the established single-page 
   var wm = document.querySelector('.wordmark');
   if (wm) {
     wm.classList.add('wm-fold');
-    var unfold = function(){ wm.classList.remove('wm-fold'); };
-    setTimeout(unfold, document.documentElement.classList.contains('preload') ? 1500 : 140);
-    setTimeout(unfold, 3200);
-    window.addEventListener('load', function(){ setTimeout(unfold, 200); });
+    var done = false;
+    var unfold = function(){ if (done) return; done = true; wm.classList.remove('wm-fold'); window.removeEventListener('mousemove', onMove); };
+    var onMove = function(){ unfold(); };
+    // Move the mouse and the name unfolds. Touch, keyboard, and no-move visitors
+    // still get it: every path below ends in unfold().
+    window.addEventListener('mousemove', onMove, { passive: true });
+    setTimeout(unfold, document.documentElement.classList.contains('preload') ? 2200 : 1700);
+    window.addEventListener('load', function(){ setTimeout(unfold, 2400); });
   }
 })();
 (function(){
@@ -575,12 +603,12 @@ FORM: Vertical expandable index — an extension of the established single-page 
     paint();
   }
 
-  // Cello strings: pluck the string your cursor crosses.
-  var strings = document.getElementById('strings');
-  if (strings && fine && !reduce) {
+  // Cello: pluck the string your cursor crosses.
+  var cello = document.getElementById('cello');
+  if (cello && fine && !reduce) {
     var last = -1;
-    strings.addEventListener('mousemove', function(e){
-      var items = strings.querySelectorAll('i'), best = -1, bestD = 12;
+    cello.addEventListener('mousemove', function(e){
+      var items = cello.querySelectorAll('.cstring'), best = -1, bestD = 9;
       for (var i = 0; i < items.length; i++) {
         var r = items[i].getBoundingClientRect();
         var d = Math.abs(e.clientX - (r.left + r.width / 2));
@@ -588,12 +616,12 @@ FORM: Vertical expandable index — an extension of the established single-page 
       }
       if (best > -1 && best !== last) {
         var el = items[best];
-        el.classList.remove('pluck'); void el.offsetWidth; el.classList.add('pluck');
+        el.classList.remove('pluck'); void el.getBoundingClientRect(); el.classList.add('pluck');
         el.addEventListener('animationend', function h(){ el.classList.remove('pluck'); el.removeEventListener('animationend', h); });
       }
       last = best;
     }, { passive: true });
-    strings.addEventListener('mouseleave', function(){ last = -1; });
+    cello.addEventListener('mouseleave', function(){ last = -1; });
   }
 
   // Dog: trots in when the footer arrives.
