@@ -45,6 +45,33 @@
         .pl-readout { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #444748; }
         .pl-readout b { font-weight: 400; color: #0b0c0c; }
         @media (prefers-reduced-motion: reduce) { .preload #preloader { display: none; } }
+        /* Scroll progress bar */
+        #progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: #0b0c0c; z-index: 10001; transition: width .08s linear; }
+        /* Work — vertical stacked, expandable index */
+        .work-summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 20px; padding: 30px 8px; transition: background .3s ease; }
+        .work-summary::-webkit-details-marker { display: none; }
+        .work-item:hover .work-summary { background: #f5f3ef; }
+        .work-index { flex: none; width: 2.5ch; }
+        .work-tile { flex: none; width: 52px; height: 52px; border: 1px solid #c4c7c7; display: flex; align-items: center; justify-content: center; color: #444748; transition: border-color .3s, color .3s; }
+        .work-item:hover .work-tile, .work-item[open] .work-tile { border-color: #0b0c0c; color: #0b0c0c; }
+        .work-head { flex: 1 1 auto; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+        .work-title { line-height: 1.15; transition: color .3s; }
+        .work-item:hover .work-title, .work-item[open] .work-title { color: #526255; }
+        .work-chevron { flex: none; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+        .work-item[open] .work-chevron { transform: rotate(180deg); }
+        .work-body { padding: 4px 8px 34px 84px; }
+        .work-item[open] .work-body { animation: workReveal .45s cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes workReveal { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        .work-actions { display: flex; align-items: center; gap: 28px; margin-top: 22px; flex-wrap: wrap; }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 7px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #0b0c0c; border-bottom: 1px solid #0b0c0c; padding-bottom: 3px; transition: color .2s, border-color .2s, gap .2s; }
+        .btn-ghost:hover { color: #526255; border-color: #526255; gap: 11px; }
+        .work-minor { display: flex; align-items: baseline; gap: 20px; padding: 22px 8px; }
+        @media (max-width: 767px) { .work-tile { display: none; } .work-body { padding-left: 8px; } .work-summary { gap: 14px; padding: 22px 4px; } }
+        /* Premium button: fill on hover */
+        .btn-fill { transition: background .3s ease, color .3s ease, gap .2s ease; }
+        .btn-fill:hover { background: #0b0c0c; color: #fff; }
+        .btn-fill:hover .material-symbols-outlined { transform: translateY(2px); }
+        .btn-fill .material-symbols-outlined { transition: transform .3s ease; }
     </style>
 <style id="ux-enhance">
         a, button { outline-offset: 3px; }
@@ -69,6 +96,7 @@
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body class="bg-background text-primary font-body-md min-h-screen relative overflow-x-hidden antialiased">
+<div id="progress"></div>
 <a class="skip-link" href="#about">Skip to content</a>
 <div class="paper-grain"></div>
 <!-- Data-loading intro -->
@@ -118,8 +146,8 @@
 <dt class="text-outline">FOCUS</dt><dd class="text-primary">Statistics · ML · Quantitative Research</dd>
 <dt class="text-outline">STATUS</dt><dd class="text-primary">Open to internships</dd>
 </dl>
-<div class="flex flex-wrap items-center gap-4">
-<a class="inline-flex items-center gap-2 border border-primary px-6 py-3 font-mono text-label-caps uppercase tracking-widest hover:bg-surface-container-highest transition-colors duration-300" href="#work">
+<div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+<a class="btn-fill inline-flex items-center gap-2 border border-primary px-6 py-3 font-mono text-label-caps uppercase tracking-widest" href="#work">
                         View Work
                         <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_downward</span>
 </a>
@@ -127,14 +155,21 @@
                         Résumé
                         <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span>
 </a>
+<button type="button" class="copy-email inline-flex items-center gap-2 font-mono text-label-caps uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" data-email="isaacjung0702@gmail.com">
+<span aria-hidden="true" class="material-symbols-outlined text-sm">content_copy</span>
+<span class="ce-label">Copy email</span>
+</button>
 </div>
 </div>
 <div class="md:col-span-5 relative flex justify-center md:justify-end items-start pt-8 md:pt-0">
 <div class="absolute inset-0 border-l border-t border-outline-variant/30 md:border-transparent pointer-events-none"></div>
-<div class="relative w-full max-w-sm aspect-[3/4] p-2 bg-surface border border-outline-variant/50 shadow-[0_4px_40px_-10px_rgba(82,98,85,0.05)]">
-<div class="w-full h-full relative overflow-hidden border border-outline-variant/30 flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant">
+<div class="relative w-full max-w-sm aspect-[3/4] p-2 bg-surface border border-outline-variant/50 shadow-[0_18px_70px_-24px_rgba(11,12,12,0.28)]">
+<div class="w-full h-full relative overflow-hidden border border-outline-variant/30 bg-surface-container-high">
+<img alt="Isaac Jung" class="w-full h-full object-cover object-top grayscale-[0.12] transition-all duration-700 ease-out hover:grayscale-0 hover:scale-[1.02]" src="assets/isaac.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+<div class="absolute inset-0 hidden flex-col items-center justify-center gap-3 text-on-surface-variant">
 <span class="font-display text-[80px] leading-none text-primary">IJ</span>
 <span class="font-mono text-label-caps uppercase tracking-widest">Isaac Jung</span>
+</div>
 </div>
 <div class="absolute -bottom-6 right-0 font-mono text-caption text-on-surface-variant text-right">Based in Pittsburgh, PA.</div>
 </div>
@@ -176,100 +211,74 @@
 <span class="font-mono text-label-caps tracking-widest text-on-surface-variant">02 / SELECTED WORK</span>
 <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-primary mt-4 leading-tight">Projects, research &amp; competition.</h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter gap-y-24 md:gap-y-32">
-<!-- arbbot — LEAD (full width). TODO: Isaac to add specifics — strategy, data sources, tech stack, results, repo/demo link. -->
-<article class="col-span-1 md:col-span-12 group border-b border-outline-variant pb-24 reveal">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
-<div class="md:col-span-7 overflow-hidden border border-outline-variant/30">
-<div class="w-full aspect-[4/3] flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-500 ease-out group-hover:scale-105">
-<span aria-hidden="true" class="material-symbols-outlined" style="font-size:56px">currency_exchange</span>
-<span class="font-mono text-label-caps uppercase tracking-widest">arbbot</span>
+<div class="flex flex-col reveal">
+<details class="work-item group border-t border-outline-variant" open>
+<summary class="work-summary">
+<span class="work-index font-mono text-label-caps text-outline">01</span>
+<span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">currency_exchange</span></span>
+<span class="work-head">
+<span class="work-title font-headline-md text-headline-md text-primary">arbbot — automated arbitrage bot</span>
+<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">ALGO TRADING · ARBITRAGE · AUTOMATION</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
+</summary>
+<div class="work-body">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">An automated arbitrage bot that monitors markets for pricing inefficiencies and acts on them programmatically — an engineering extension of the rules-based arbitrage strategy that placed 2nd at the CMU MSCF Rotman Trading Competition.</p>
+<div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PERSONAL PROJECT</span><a class="btn-ghost" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_outward</span></a></div>
+</div>
+</details><details class="work-item group border-t border-outline-variant">
+<summary class="work-summary">
+<span class="work-index font-mono text-label-caps text-outline">02</span>
+<span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">trending_up</span></span>
+<span class="work-head">
+<span class="work-title font-headline-md text-headline-md text-primary">MSCF Rotman Trading Competition</span>
+<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">QUANT · ARBITRAGE · 2ND PLACE</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
+</summary>
+<div class="work-body">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">2nd place, arbitrage track. Implemented a rules-based arbitrage strategy to accumulate roughly $40K in profits, then worked to preserve those gains — executing on price discrepancies for up to $200K in trading opportunities.</p>
+<div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">CARNEGIE MELLON · SEP 2025</span></div>
+</div>
+</details><details class="work-item group border-t border-outline-variant">
+<summary class="work-summary">
+<span class="work-index font-mono text-label-caps text-outline">03</span>
+<span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">verified_user</span></span>
+<span class="work-head">
+<span class="work-title font-headline-md text-headline-md text-primary">LLM Safety &amp; Benchmarking</span>
+<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">AI SAFETY · RESEARCH</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
+</summary>
+<div class="work-body">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">As an undergraduate research assistant at Carnegie Mellon, evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks for alignment and misuse risk — assessing the robustness of current evaluation methods and flagging recurring failure patterns to strengthen benchmark design.</p>
+<div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">CARNEGIE MELLON · 2026</span></div>
+</div>
+</details><details class="work-item group border-t border-outline-variant">
+<summary class="work-summary">
+<span class="work-index font-mono text-label-caps text-outline">04</span>
+<span class="work-tile"><span aria-hidden="true" class="material-symbols-outlined">public</span></span>
+<span class="work-head">
+<span class="work-title font-headline-md text-headline-md text-primary">John Locke Public Policy Symposium</span>
+<span class="work-tags font-mono text-label-caps tracking-wider text-on-surface-variant">PUBLIC POLICY · DISTINCTION</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined work-chevron text-outline">expand_more</span>
+</summary>
+<div class="work-body">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">Selected from 1,500+ international applicants for a Princeton symposium on global economics and trade. Applied economic reasoning and quantitative analysis to trade-policy tradeoffs, earning a Distinction Award for contributions to discussions on political economy.</p>
+<div class="work-actions"><span class="font-mono text-label-caps tracking-widest text-outline">PRINCETON · 2024</span></div>
+</div>
+</details>
+<div class="work-minor border-t border-b border-outline-variant">
+<span class="font-mono text-label-caps text-outline">05</span>
+<div class="flex-1">
+<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+<span class="font-body-md text-body-md text-primary">John Locke Essay Competition</span>
+<span class="font-mono text-caption tracking-wider text-on-surface-variant">2× FINALIST · OXFORD</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-1 max-w-xl leading-relaxed">Two-time finalist in a global economics essay competition (~19,000 entries in 2023; 43,000+ in 2024).</p>
 </div>
 </div>
-<div class="md:col-span-4 md:col-start-9 mt-8 md:mt-0 flex flex-col justify-center">
-<div class="flex flex-wrap gap-2 mb-6">
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">ALGO TRADING</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">ARBITRAGE</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">AUTOMATION</span>
-</div>
-<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6 leading-tight group-hover:text-secondary transition-colors duration-300">arbbot — automated arbitrage bot</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8">
-                            An automated arbitrage bot that monitors markets for pricing inefficiencies and acts on them programmatically — an engineering extension of the rules-based arbitrage strategy that placed 2nd at the CMU MSCF Rotman Trading Competition.
-                        </p>
-<div class="mt-auto">
-<span class="inline-flex items-center gap-2 font-mono text-label-caps tracking-widest text-on-surface-variant">PERSONAL PROJECT</span>
-</div>
-</div>
-</div>
-</article>
-<!-- Rotman -->
-<article class="col-span-1 md:col-span-6 group reveal">
-<div class="overflow-hidden border border-outline-variant/30 mb-6">
-<div class="w-full aspect-[3/4] flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-500 ease-out group-hover:scale-105">
-<span aria-hidden="true" class="material-symbols-outlined" style="font-size:56px">trending_up</span>
-<span class="font-mono text-label-caps uppercase tracking-widest">Quantitative Trading</span>
-</div>
-</div>
-<div class="flex flex-wrap gap-2 mb-4">
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">QUANT</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">2ND PLACE</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors duration-300">MSCF Rotman Trading Competition</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                    2nd place, arbitrage track. Implemented a rules-based arbitrage strategy to accumulate roughly $40K in profits, then worked to preserve those gains — executing on price discrepancies for up to $200K in trading opportunities. Carnegie Mellon · Sep 2025.
-                </p>
-</article>
-<!-- LLM Safety -->
-<article class="col-span-1 md:col-span-6 group reveal md:mt-24">
-<div class="overflow-hidden border border-outline-variant/30 mb-6">
-<div class="w-full aspect-square flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-500 ease-out group-hover:scale-105">
-<span aria-hidden="true" class="material-symbols-outlined" style="font-size:56px">verified_user</span>
-<span class="font-mono text-label-caps uppercase tracking-widest">AI Safety Research</span>
-</div>
-</div>
-<div class="flex flex-wrap gap-2 mb-4">
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">AI SAFETY</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">RESEARCH</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors duration-300">LLM Safety &amp; Benchmarking</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                    As an undergraduate research assistant at Carnegie Mellon, evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks for alignment and misuse risk — assessing the robustness of current evaluation methods and flagging recurring failure patterns to strengthen benchmark design.
-                </p>
-</article>
-<!-- John Locke Essays -->
-<article class="col-span-1 md:col-span-6 group reveal">
-<div class="overflow-hidden border border-outline-variant/30 mb-6">
-<div class="w-full aspect-[3/4] flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-500 ease-out group-hover:scale-105">
-<span aria-hidden="true" class="material-symbols-outlined" style="font-size:56px">article</span>
-<span class="font-mono text-label-caps uppercase tracking-widest">Essay Competition</span>
-</div>
-</div>
-<div class="flex flex-wrap gap-2 mb-4">
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">ECONOMICS</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">2× FINALIST</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors duration-300">John Locke Essay Competition</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                    Two-time finalist (Oxford, UK) in a global essay competition drawing ~19,000 entries in 2023 and over 43,000 in 2024. Essays analyzed economic, demographic, and historical trends, including the causes and consequences of global population decline.
-                </p>
-</article>
-<!-- Policy Symposium -->
-<article class="col-span-1 md:col-span-6 group reveal md:mt-24">
-<div class="overflow-hidden border border-outline-variant/30 mb-6">
-<div class="w-full aspect-square flex flex-col items-center justify-center gap-3 bg-surface-container-high text-on-surface-variant transition-transform duration-500 ease-out group-hover:scale-105">
-<span aria-hidden="true" class="material-symbols-outlined" style="font-size:56px">public</span>
-<span class="font-mono text-label-caps uppercase tracking-widest">Public Policy</span>
-</div>
-</div>
-<div class="flex flex-wrap gap-2 mb-4">
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">PUBLIC POLICY</span>
-<span class="px-3 py-1 border border-outline text-on-surface-variant font-mono text-label-caps tracking-wider">DISTINCTION</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors duration-300">John Locke Public Policy Symposium</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                    Selected from 1,500+ international applicants for a Princeton symposium on global economics and trade. Applied economic reasoning and quantitative analysis to trade-policy tradeoffs, earning a Distinction Award for contributions to discussions on political economy.
-                </p>
-</article>
 </div>
 </div>
 </section>
@@ -379,6 +388,10 @@
 <a class="text-primary hover:text-secondary transition-colors" href="https://www.linkedin.com/in/isaacwjung" target="_blank" rel="noopener">LinkedIn</a>
 <a class="text-primary hover:text-secondary transition-colors" href="https://github.com/iwjung55" target="_blank" rel="noopener">GitHub</a>
 <a class="text-primary hover:text-secondary transition-colors" href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+<button type="button" class="copy-email inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors uppercase tracking-widest" data-email="isaacjung0702@gmail.com">
+<span aria-hidden="true" class="material-symbols-outlined text-sm">content_copy</span>
+<span class="ce-label">Copy email</span>
+</button>
 <span class="text-on-surface-variant normal-case tracking-normal font-caption text-caption ml-auto">Pittsburgh, PA</span>
 </div>
 </div>
@@ -460,6 +473,23 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(function(s){ spy.observe(s); });
   }
+})();
+(function(){
+  // Scroll progress bar
+  var p = document.getElementById('progress');
+  if (p) {
+    var upd = function(){ var h = document.documentElement, max = h.scrollHeight - h.clientHeight; p.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%'; };
+    window.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd, { passive: true }); upd();
+  }
+  // Copy-email buttons
+  document.querySelectorAll('.copy-email').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var email = btn.getAttribute('data-email'), label = btn.querySelector('.ce-label'), old = label ? label.textContent : '';
+      var ok = function(){ if (label) { label.textContent = 'Copied \u2713'; setTimeout(function(){ label.textContent = old; }, 1600); } };
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(email).then(ok).catch(function(){ location.href = 'mailto:' + email; }); }
+      else { location.href = 'mailto:' + email; }
+    });
+  });
 })();
 </script>
 </body></html>
