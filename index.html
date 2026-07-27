@@ -14,7 +14,7 @@
 <link href="styles.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600..800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
@@ -30,41 +30,49 @@
         .js .reveal { opacity: 0; transform: translateY(16px); }
         .reveal.is-in { opacity: 1; transform: none; }
         /* Active nav link (scroll-spy) */
-        .nav-link[data-active="true"] { color: #0b0c0c; }
+        .nav-link[data-active="true"] { color: #1f6f4f; }
         .nav-link[data-active="true"] .nav-underline { transform: scaleX(1); }
-        .nav-underline { display:block; height:1px; background:#0b0c0c; transform: scaleX(0); transform-origin:left; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+        .nav-underline { display:block; height:1px; background:#1f6f4f; transform: scaleX(0); transform-origin:left; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
         /* Data-loading intro — shown on first visit only (JS-gated via .preload), never on reduced-motion */
         #preloader { display: none; }
-        .preload #preloader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: #fbf9f5; }
+        .preload #preloader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: #f4f5f4; }
         #preloader.pl-done { opacity: 0; pointer-events: none; transition: opacity .5s ease; }
-        .pl-mark { font-family: 'EB Garamond', serif; font-size: 44px; color: #0b0c0c; line-height: 1; }
+        .pl-mark { font-family: 'Bricolage Grotesque', sans-serif; font-size: 44px; color: #0b0c0c; line-height: 1; }
         .pl-bars { display: flex; align-items: flex-end; gap: 5px; height: 76px; }
         .pl-bars i { width: 7px; background: #0b0c0c; height: 10px; animation: plbar 1s ease-in-out infinite; }
         .pl-bars i:nth-child(1){animation-delay:0s} .pl-bars i:nth-child(2){animation-delay:.07s} .pl-bars i:nth-child(3){animation-delay:.14s} .pl-bars i:nth-child(4){animation-delay:.21s} .pl-bars i:nth-child(5){animation-delay:.28s} .pl-bars i:nth-child(6){animation-delay:.35s} .pl-bars i:nth-child(7){animation-delay:.42s} .pl-bars i:nth-child(8){animation-delay:.49s} .pl-bars i:nth-child(9){animation-delay:.42s} .pl-bars i:nth-child(10){animation-delay:.35s} .pl-bars i:nth-child(11){animation-delay:.28s} .pl-bars i:nth-child(12){animation-delay:.21s} .pl-bars i:nth-child(13){animation-delay:.14s} .pl-bars i:nth-child(14){animation-delay:.07s}
         @keyframes plbar { 0%,100% { height: 10px } 50% { height: 68px } }
-        .pl-readout { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #444748; }
+        .pl-readout { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #444748; }
         .pl-readout b { font-weight: 400; color: #0b0c0c; }
         @media (prefers-reduced-motion: reduce) { .preload #preloader { display: none; } }
+        /* Plotted ground — chart paper, not decoration */
+        .plot-ground { position: relative; }
+        .plot-ground::before { content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+            background-image: radial-gradient(circle, rgba(11,12,12,.13) 1px, transparent 1px);
+            background-size: 30px 30px;
+            -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+            mask-image: linear-gradient(to bottom, #000 0%, transparent 72%); }
+        .plot-ground > * { position: relative; z-index: 1; }
         /* Scroll progress bar */
-        #progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: #0b0c0c; z-index: 10001; transition: width .08s linear; }
+        #progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: #1f6f4f; z-index: 10001; transition: width .08s linear; }
         /* Work — vertical stacked, expandable index */
         .work-summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 20px; padding: 30px 8px; transition: background .3s ease; }
         .work-summary::-webkit-details-marker { display: none; }
-        .work-item:hover .work-summary { background: #f5f3ef; }
+        .work-item:hover .work-summary { background: #eef0ee; }
         .work-index { flex: none; width: 2.5ch; }
-        .work-tile { flex: none; width: 52px; height: 52px; border: 1px solid #c4c7c7; display: flex; align-items: center; justify-content: center; color: #444748; transition: border-color .3s, color .3s; }
+        .work-tile { flex: none; width: 52px; height: 52px; border: 1px solid #c9cec9; display: flex; align-items: center; justify-content: center; color: #444748; transition: border-color .3s, color .3s; }
         .work-item:hover .work-tile, .work-item[open] .work-tile { border-color: #0b0c0c; color: #0b0c0c; }
         .work-head { flex: 1 1 auto; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
         .work-title { line-height: 1.15; transition: color .3s; }
-        .work-item:hover .work-title, .work-item[open] .work-title { color: #526255; }
+        .work-item:hover .work-title, .work-item[open] .work-title { color: #1f6f4f; }
         .work-chevron { flex: none; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
         .work-item[open] .work-chevron { transform: rotate(180deg); }
         .work-body { padding: 4px 8px 34px 84px; }
         .work-item[open] .work-body { animation: workReveal .45s cubic-bezier(.2,.8,.2,1) both; }
         @keyframes workReveal { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
         .work-actions { display: flex; align-items: center; gap: 28px; margin-top: 22px; flex-wrap: wrap; }
-        .btn-ghost { display: inline-flex; align-items: center; gap: 7px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #0b0c0c; border-bottom: 1px solid #0b0c0c; padding-bottom: 3px; transition: color .2s, border-color .2s, gap .2s; }
-        .btn-ghost:hover { color: #526255; border-color: #526255; gap: 11px; }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #0b0c0c; border-bottom: 1px solid #0b0c0c; padding-bottom: 3px; transition: color .2s, border-color .2s, gap .2s; }
+        .btn-ghost:hover { color: #1f6f4f; border-color: #1f6f4f; gap: 11px; }
         .work-minor { display: flex; align-items: baseline; gap: 20px; padding: 22px 8px; }
         @media (max-width: 767px) { .work-tile { display: none; } .work-body { padding-left: 8px; } .work-summary { gap: 14px; padding: 22px 4px; } }
         /* Premium button: fill on hover */
@@ -75,7 +83,7 @@
     </style>
 <style id="ux-enhance">
         a, button { outline-offset: 3px; }
-        a:focus-visible, button:focus-visible { outline: 2px solid #526255; }
+        a:focus-visible, button:focus-visible { outline: 2px solid #1f6f4f; }
         .skip-link { position: absolute; left: -999px; top: 0; z-index: 100; background:#0b0c0c; color:#fff; padding:10px 16px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; }
         .skip-link:focus { left: 8px; top: 8px; }
         #toTop { transition: opacity .3s ease, transform .3s ease; }
@@ -95,6 +103,13 @@
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
+<!--
+THESIS: A quantitative builder's index. Refuses the warm-ivory + display-serif + tracked-mono arrangement this category defaults to.
+OWN-WORLD: Cool instrument neutrals (#f4f5f4 ground, graphite ink) with one signal green (#1f6f4f) carrying progress, active state and live rows. Bricolage Grotesque display, Archivo text, JetBrains Mono for every data/notation register. 0px corners, 1px rules, plotted dot-grid ground.
+STORY: Visitor reads a builder who ships quantitative systems, scans the stacked work index, expands what interests them, copies the email.
+FIRST VIEWPORT: Oversized tight-tracked headline left, monospace metadata block beneath it, portrait plate right, three actions on one baseline over chart-paper ground.
+FORM: Vertical expandable index — an extension of the established single-page world, not a replacement.
+-->
 <body class="bg-background text-primary font-body-md min-h-screen relative overflow-x-hidden antialiased">
 <div id="progress"></div>
 <a class="skip-link" href="#about">Skip to content</a>
@@ -130,12 +145,12 @@
 </header>
 <main id="top">
 <!-- ============ 00 / HERO ============ -->
-<section class="pt-32 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 md:pb-32 max-w-container-max mx-auto">
+<section class="plot-ground pt-32 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 md:pb-32 max-w-container-max mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
 <div class="absolute -top-12 left-0 font-mono text-label-caps tracking-widest text-on-surface-variant">00 / INDEX</div>
 <h1 class="font-display text-headline-lg-mobile md:text-display text-primary mb-6 max-w-2xl leading-tight">
-                    Data × Product × Decisions
+                    Data × Models × Products
                 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed mb-8">
                     Statistics &amp; Machine Learning at Carnegie Mellon. I build models, evaluation pipelines, and trading systems — turning messy, unstructured data into honest, quantitative insight.
