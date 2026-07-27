@@ -151,6 +151,14 @@
         /* ================= ENGINEERED BOTANY =================
            Flowers drawn as folded paper: flat facets, visible fold lines, ink only.
            Closed = a tight bud. Hover = the folds open. Never pastel, never cute. */
+        /* ---------- A quiet vine frame around the entire site ---------- */
+        #vineframe { position: fixed; inset: 0; z-index: -1; pointer-events: none; color: #97a197; }
+        #vineframe .vf { position: absolute; opacity: .3; }
+        #vineframe .vf-l { left: 10px; top: 0; width: 40px; height: 100%; }
+        #vineframe .vf-r { right: 10px; top: 0; width: 40px; height: 100%; }
+        #vineframe .vf-t { top: 8px; left: 0; width: 100%; height: 30px; opacity: .18; }
+        #vineframe .vf-b { bottom: 8px; left: 0; width: 100%; height: 30px; opacity: .18; }
+        @media (max-width: 1100px) { #vineframe .vf-l, #vineframe .vf-r { display: none; } }
         /* ---------- Vines: fixed-size corner pieces that sit OUTSIDE the box.
                They never stretch across content, so text stays clean. ---------- */
         .ivy-corner { position: absolute; width: 60px; height: 60px; pointer-events: none; overflow: visible;
@@ -358,6 +366,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 -->
 <body class="bg-background text-primary font-body-md min-h-screen relative overflow-x-hidden antialiased">
 <div id="progress"></div>
+<div aria-hidden="true" id="vineframe"><svg class="vf vf-l" viewBox="0 0 40 900" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><path d="M20 -10 C8 90 32 180 20 280 S8 470 20 570 S32 760 20 910"/><path d="M20 120c-9-4-14-13-12-21 9 1 15 10 12 21z"/><path d="M20 320c9-4 14-13 12-21-9 1-15 10-12 21z"/><path d="M20 520c-9-4-14-13-12-21 9 1 15 10 12 21z"/><path d="M20 720c9-4 14-13 12-21-9 1-15 10-12 21z"/></svg><svg class="vf vf-r" viewBox="0 0 40 900" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><path d="M20 -10 C32 90 8 180 20 280 S32 470 20 570 S8 760 20 910"/><path d="M20 200c9-4 14-13 12-21-9 1-15 10-12 21z"/><path d="M20 400c-9-4-14-13-12-21 9 1 15 10 12 21z"/><path d="M20 600c9-4 14-13 12-21-9 1-15 10-12 21z"/><path d="M20 800c-9-4-14-13-12-21 9 1 15 10 12 21z"/></svg><svg class="vf vf-t" viewBox="0 0 900 30" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M-10 15 C120 4 260 26 400 15 S680 4 910 15"/></svg><svg class="vf vf-b" viewBox="0 0 900 30" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M-10 15 C120 26 260 4 400 15 S680 26 910 15"/></svg></div>
 <div aria-hidden="true" id="stage"><div class="arena"><div class="sgoal"><svg viewBox="0 0 98 76" fill="none">
 <g stroke="#9aa39a" stroke-width=".8" opacity=".85"><path d="M18.5 10 V64"/><path d="M29.0 10 V64"/><path d="M39.5 10 V64"/><path d="M50.0 10 V64"/><path d="M60.5 10 V64"/><path d="M71.0 10 V64"/><path d="M81.5 10 V64"/><path d="M8 20.8 H90"/><path d="M8 31.6 H90"/><path d="M8 42.4 H90"/><path d="M8 53.2 H90"/></g>
 <path d="M8 10 H90 V64 H8" stroke="#0b0c0c" stroke-width="3" stroke-linejoin="round"/>
@@ -389,7 +398,7 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" data-nav="experience" href="#experience">Experience<span class="nav-underline"></span></a>
 <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300" data-nav="contact" href="#contact">Contact<span class="nav-underline"></span></a>
 </nav>
-<a class="hidden md:block px-6 py-2 bg-primary text-on-primary font-mono text-label-caps tracking-widest hover:bg-secondary transition-colors duration-300" href="mailto:isaacjung0702@gmail.com">Connect</a>
+<a class="hidden md:block px-6 py-2 bg-primary text-on-primary font-mono text-label-caps tracking-widest hover:bg-secondary transition-colors duration-300" href="#contact">Connect</a>
 <!-- Mobile Menu Icon -->
 <button class="md:hidden text-primary" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu" onclick="var m=document.getElementById('mobileMenu');var h=m.classList.toggle('hidden');m.classList.toggle('flex');this.setAttribute('aria-expanded',String(!h))">
 <span aria-hidden="true" class="material-symbols-outlined">menu</span>
@@ -400,12 +409,12 @@ FORM: Vertical expandable index — an extension of the established single-page 
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="#work">Work</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="#experience">Experience</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact</a>
-<a class="mt-2 inline-block px-6 py-2 bg-primary text-on-primary text-label-caps tracking-widest text-center" href="mailto:isaacjung0702@gmail.com">Connect</a>
+<a class="mt-2 inline-block px-6 py-2 bg-primary text-on-primary text-label-caps tracking-widest text-center" href="#contact">Connect</a>
 </div>
 </header>
 <main id="top">
 <!-- ============ 00 / HERO ============ -->
-<section class="plot-ground pt-40 md:pt-48 px-margin-mobile md:px-margin-desktop pb-24 md:pb-32 max-w-container-max mx-auto">
+<section class="plot-ground min-h-[100svh] flex flex-col justify-center pt-40 md:pt-44 px-margin-mobile md:px-margin-desktop pb-28 md:pb-32 max-w-container-max mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div class="md:col-span-7 flex flex-col justify-center pb-12 md:pb-0 relative">
 <canvas aria-hidden="true" id="water"></canvas>
